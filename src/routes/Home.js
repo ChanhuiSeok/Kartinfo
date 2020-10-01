@@ -6,6 +6,7 @@ import Bounce from 'react-reveal/Bounce';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
 import Tada from 'react-reveal/Tada';
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -33,7 +34,7 @@ const Dao = styled.img`
   top:30px;
   left:0;
   @media (max-width: 600px) {
-    width: 50%;
+    width: 60%;
     top:20px;
   }
 `;
@@ -43,7 +44,7 @@ const Dizni = styled.img`
   top:30px;
   right:0;
   @media (max-width: 600px) {
-    width: 30%;
+    width: 50%;
     top:30px;
   }
 `;
@@ -54,9 +55,7 @@ const Uni = styled.img`
   top:0;
   right:200px;
   @media (max-width: 600px) {
-    width: 12%;
-    top:35px;
-    right:110px;
+    width: 0
   }
 `;
 
@@ -67,9 +66,7 @@ const Bazzi = styled.img`
   left:200px;
   max-width:40%;
   @media (max-width: 600px) {
-    width: 25%;
-    top:40px;
-    left:120px;
+    width: 0
   }
 `;
 
@@ -77,12 +74,12 @@ const TitleImg = styled.img`
   margin-top:100px;
   width:100%;
   @media (max-width: 600px) {
-    margin-top:-650px;
+    margin-top:130px;
   }
 `;
 
 const Title = styled.h1`
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 500;
   margin-bottom: 20px;
   background-color: rgba(0,0,0, 0.8);
@@ -136,6 +133,12 @@ export default function App() {
   const onChangeField = e=>{
     setUsername(e.target.value);
   }
+  const handleKeyPress = e =>{
+    if( e.key === "Enter" ){
+      const { href } = window.location;
+      window.location.href = `${ href }${username}`;
+    }
+  }
 
   //const { loading, data } = useQuery(GET_MOVIES);
   return(
@@ -163,9 +166,12 @@ export default function App() {
           name="username"
           value={username}
           onChange={onChangeField}
+          onKeyPress={handleKeyPress}
           placeholder="닉네임 입력"
         ></InputField>
-        <EnterButton></EnterButton>
+          <Link to ={`/${username}`}>
+            <EnterButton></EnterButton>
+          </Link>
         </Fade>
       </Header>   
     </Container>
