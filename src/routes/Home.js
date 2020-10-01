@@ -8,6 +8,7 @@ import Zoom from 'react-reveal/Zoom';
 import Tada from 'react-reveal/Tada';
 import { Link } from "react-router-dom";
 
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -140,7 +141,6 @@ export default function App() {
     }
   }
 
-  //const { loading, data } = useQuery(GET_MOVIES);
   return(
     <>
     <Bounce top>
@@ -169,7 +169,7 @@ export default function App() {
           onKeyPress={handleKeyPress}
           placeholder="닉네임 입력"
         ></InputField>
-          <Link to ={`/${username}`}>
+           <Link to ={`/${username}`}>
             <EnterButton></EnterButton>
           </Link>
         </Fade>
