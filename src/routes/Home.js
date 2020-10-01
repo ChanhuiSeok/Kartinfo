@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
 import styled from "styled-components"
@@ -74,15 +74,15 @@ const Bazzi = styled.img`
 `;
 
 const TitleImg = styled.img`
-  margin-top:-450px;
-  max-width:100%;
+  margin-top:100px;
+  width:100%;
   @media (max-width: 600px) {
     margin-top:-650px;
   }
 `;
 
 const Title = styled.h1`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
   margin-bottom: 20px;
   background-color: rgba(0,0,0, 0.8);
@@ -93,7 +93,8 @@ const Title = styled.h1`
   }
 `;
 const Subtitle = styled.h3`
-  font-size: 35px;
+  margin-top:7vh;
+  font-size: 18px;
 `;
 const Footer = styled.div`
   font-size: 12px;
@@ -102,9 +103,40 @@ const Footer = styled.div`
   opacity: 0.7;
   margin:10px;
 `;
+const InputField = styled.input`
+  font-family:Noto Sans KR;
+  font-weight:600;
+  font-size:28px;
+  background-color:white;
+  border-radius:10px;
+  border:2px solid white;
+  padding:10px;
+  margin:0.8vh;
+  @media (max-width: 600px) {
+    font-size: 21px;
+  }
+`;
+const EnterButton = styled.button`
+  background: url('/button.png');
+  cursor:pointer;
+  width:140px;
+  height:70px;
+  border:none;
+  transition: all ease 0.3s;
 
+  &:hover{
+    background: url('/button_hover.png');
+    transition: all ease 0.4s 0s;
+  }
+`;
 
-export default () => {
+export default function App() {
+
+  const [username, setUsername] = useState("");
+  const onChangeField = e=>{
+    setUsername(e.target.value);
+  }
+
   //const { loading, data } = useQuery(GET_MOVIES);
   return(
     <>
@@ -125,7 +157,15 @@ export default () => {
         </Bounce>
         <Fade top>
         <Title>KartRider 오픈 API로 제작한 유저정보 조회 페이지</Title>
-        <Subtitle>-</Subtitle>
+        <Subtitle>빈 칸에 닉네임을 입력하세요!</Subtitle>
+        <InputField
+          type="text"
+          name="username"
+          value={username}
+          onChange={onChangeField}
+          placeholder="닉네임 입력"
+        ></InputField>
+        <EnterButton></EnterButton>
         </Fade>
       </Header>   
     </Container>
