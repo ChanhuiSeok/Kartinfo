@@ -26,17 +26,26 @@ const Header = styled.header`
   align-items: center;
   width: 100%;
 `;
+
 const Dao = styled.img`
   position:absolute;
   max-width:80%;
-  top:0;
+  top:30px;
   left:0;
+  @media (max-width: 600px) {
+    width: 50%;
+    top:20px;
+  }
 `;
 const Dizni = styled.img`
   position:absolute;
   max-width:80%;
-  top:0;
+  top:30px;
   right:0;
+  @media (max-width: 600px) {
+    width: 30%;
+    top:30px;
+  }
 `;
 
 const Uni = styled.img`
@@ -44,6 +53,11 @@ const Uni = styled.img`
   max-width:13%;
   top:0;
   right:200px;
+  @media (max-width: 600px) {
+    width: 12%;
+    top:35px;
+    right:110px;
+  }
 `;
 
 const Bazzi = styled.img`
@@ -52,11 +66,19 @@ const Bazzi = styled.img`
   top:0;
   left:200px;
   max-width:40%;
+  @media (max-width: 600px) {
+    width: 25%;
+    top:40px;
+    left:120px;
+  }
 `;
 
 const TitleImg = styled.img`
   margin-top:-450px;
   max-width:100%;
+  @media (max-width: 600px) {
+    margin-top:-650px;
+  }
 `;
 
 const Title = styled.h1`
@@ -64,8 +86,11 @@ const Title = styled.h1`
   font-weight: 500;
   margin-bottom: 20px;
   background-color: rgba(0,0,0, 0.8);
-  padding: 1.3vh;
-  border-radius: 15px;
+  padding: 1vh;
+  border-radius: 13px;
+  @media (max-width: 600px) {
+    font-size: 13px;
+  }
 `;
 const Subtitle = styled.h3`
   font-size: 35px;
@@ -100,12 +125,12 @@ export default () => {
         </Bounce>
         <Fade top>
         <Title>KartRider 오픈 API로 제작한 유저정보 조회 페이지</Title>
-        <Subtitle>I love GraphQL</Subtitle>
+        <Subtitle>-</Subtitle>
         </Fade>
       </Header>   
     </Container>
     <Footer>
-      본 페이지는 Chrome 브라우저, 데스크톱 환경(1920*1080)에 최적화되어 있습니다
+      본 페이지는 Chrome 브라우저, 데스크톱 환경(1920*1080) 및 모바일에 최적화되어 있습니다
     </Footer>
     </>
   )
