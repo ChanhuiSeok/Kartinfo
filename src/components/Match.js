@@ -4,17 +4,37 @@ import styled from "styled-components";
 import Slide from 'react-reveal/Slide';
 import gameType from '../jsonData/gameType.json'
 import track from '../jsonData/track.json'
+import kart from '../jsonData/kart.json'
+import character from '../jsonData/character.json'
+import moment from 'moment';
 
 const Card = styled.div`
   width:1000px;
   border-radius: 7px;
-  margin-bottom:18px;
+  margin-bottom:40px;
+  margin-left:.3em;
   background-color:white;
   float:left;
   color:black;
   padding:15px; 
   @media (max-width: 700px) {
     width:90%;
+  }
+`;
+
+const CardTitle = styled.div`
+  width:350px;
+  border-radius: 5px;
+  margin-bottom:-2px;
+  margin-left:.3em;
+  background-color:#324B7C;
+  float:left;
+  color:white;
+  padding:8px; 
+  font-size:13px;
+  @media (max-width: 700px) {
+    width:300px;
+    font-size:11px;
   }
 `;
 
@@ -89,8 +109,10 @@ const Ranks = styled.div`
   color:white;
   line-height:110px;
   @media (max-width: 700px) {
-    height:50px;
-    line-height:45px;
+    width:60px;
+    height:40px;
+    line-height:35px;
+    font-size:10px;
   }
 `;
 
@@ -110,10 +132,29 @@ function findTrackName(trackId){
   }
 }
 
-export default ({ id, matchType, character, trackId, playerCount, player }) => {
+function findCharacterName(characterId){
+  for(var i = 0; i<character.length; i++){
+    if (character[i].id === characterId){
+      return character[i].name;
+    }
+  }
+}
+
+function findKartName(kartId){
+  for(var i = 0; i<kart.length; i++){
+    if (kart[i].id === kartId){
+      return kart[i].name;
+    }
+  }
+}
+
+export default ({ id, matchType, character, trackId, startTime, playerCount, player }) => {
   const matchTitle = findMatchType(matchType);
   const trackName = findTrackName(trackId);
+  const characterName = findCharacterName(character);
+  const kartName = findKartName(player.kart);
   const time = player.matchTime
+  const dates = moment(startTime).format('YYYY-MM-DD');
   const elapsedMSec = time;
   const elapsedSec = parseInt(time / 1000);
   const elapsedMin = parseInt(elapsedSec / 60);
@@ -121,9 +162,13 @@ export default ({ id, matchType, character, trackId, playerCount, player }) => {
   const cal_Sec = elapsedMin * 60;
   const time_Sec = elapsedSec - cal_Sec;
   const time_MSec = (elapsedMSec - (elapsedMin*60*1000))%1000;
-  console.log(player)
   return (
+    <div style={{margin:'0 auto'}}>
     <Slide left>
+      <CardTitle>
+       {dates} / <span style={{color:'#FCD968'}}>{characterName}</span> 착용 / 
+       <span style={{color:'#61E9B4'}}> {kartName} </span>탑승
+      </CardTitle>
       <Card>
           <CharacterImg src={'/metadata/character/'+character+'.png'}></CharacterImg>
           <KartImg src={'/metadata/kart/'+player.kart+'.png'}></KartImg>
@@ -143,5 +188,6 @@ export default ({ id, matchType, character, trackId, playerCount, player }) => {
           }
       </Card>
     </Slide>
+    </div>
   );
 };

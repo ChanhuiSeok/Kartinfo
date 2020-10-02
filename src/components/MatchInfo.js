@@ -10,7 +10,8 @@ import Match from "../components/Match";
 const Container = styled.div`
   position:relative;
   margin-top:240px;
-  @media (max-width: 600px) {
+  align-items:center;
+  @media (max-width: 700px) {
     margin-top:150px;
   }
 `;
