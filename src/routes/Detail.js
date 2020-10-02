@@ -138,7 +138,7 @@ export default () => {
           </>
         }
         <Subtitle>
-          <MatchInfo id={usrId}></MatchInfo>
+          {data && <MatchInfo id={data.user.accessId}></MatchInfo>}    
         </Subtitle>
         </Header>
         
