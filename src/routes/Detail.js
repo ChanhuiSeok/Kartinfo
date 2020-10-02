@@ -5,9 +5,6 @@ import { useQuery } from "@apollo/react-hooks";
 import MatchInfo from "../components/MatchInfo";
 import styled, { keyframes } from "styled-components";
 import Bounce from "react-reveal/Bounce";
-import Fade from "react-reveal/Fade";
-import Zoom from "react-reveal/Zoom";
-import Tada from "react-reveal/Tada";
 import { Link } from "react-router-dom";
 
 /* Home.js에서 건너온 state 값을 토대로 usrID로 변환해 주고, 정보를 그리는 메인 페이지 */
@@ -16,9 +13,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
   width: 100%;
 `;
 const Header = styled.header`
+min-height:1000px;
   background-color: #2f9fe7;
   background-image: linear-gradient(
       45deg,
@@ -38,13 +37,28 @@ const Header = styled.header`
     );
   background-position: 0 0, 25px 25px;
   background-size: 50px 50px;
-  height: 95vh;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
+`;
+
+const TitleDiv = styled.div`
+    margin-bottom:300px;
+`;
+
+const ResultImg = styled.img`
+  position: absolute;
+  max-width: 100%;
+  top: 30px;
+  left: 50px;
+  @media (max-width: 600px) {
+    width: 90%;
+    top: 20px;
+    left:5px;
+  }
 `;
 
 const Title = styled.h1`
@@ -113,35 +127,40 @@ let { usrId } = "";
 
 export default () => {
   const { usrName } = useParams();
-  const { loading, data } = useQuery(GET_USRINFO, {
-    variables: { usrName }
+  const { loading, data, error } = useQuery(GET_USRINFO, {
+    variables: { usrName },
   });
   if (data && data.user) {
     usrId = data.user.accessId;
   }
   return (
     <>
+      <Bounce left>
+        <ResultImg src={"/result_title.png"}></ResultImg>
+      </Bounce>
       <Container>
         <Header>
-        { loading && <>
-          <StyledSpinner viewBox="0 0 50 50">
-            <circle
-              className="path"
-              cx="25"
-              cy="25"
-              r="20"
-              fill="none"
-              strokeWidth="4"
-            /> Loading...
-          </StyledSpinner>
-          <p>로딩중...</p>
-          </>
-        }
-        <Subtitle>
-          {data && <MatchInfo id={data.user.accessId}></MatchInfo>}    
-        </Subtitle>
+          {loading && (
+            <>
+              <StyledSpinner viewBox="0 0 50 50">
+                <circle
+                  className="path"
+                  cx="25"
+                  cy="25"
+                  r="20"
+                  fill="none"
+                  strokeWidth="4"
+                />{" "}
+                Loading...
+              </StyledSpinner>
+              <p>로딩중...</p>
+            </>
+          )}
+          {data &&
+            <MatchInfo id={data.user.accessId}></MatchInfo>
+          }
+          {error && <h1>유저정보가 없습니다.</h1>}
         </Header>
-        
       </Container>
       <Footer>
         본 페이지는 Chrome 브라우저, 데스크톱 환경(1920*1080) 및 모바일에
