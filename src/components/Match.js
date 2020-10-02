@@ -10,6 +10,7 @@ const Card = styled.div`
   margin-bottom:10px;
   background-color:white;
   color:black;
+  padding:7px; 
   @media (max-width: 600px) {
     width:90%;
     height:150px;
@@ -17,7 +18,7 @@ const Card = styled.div`
 `;
 
 const CardTitle = styled.h1`
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 500;
   @media (max-width: 600px) {
     font-size: 7px;
@@ -28,14 +29,17 @@ const CharacterImg = styled.img`
   width:20%;
 `;
 
+const TrackImg = styled.img`
+  width:20%;
+`;
+
 export default ({ id, matchType, character, trackId }) => {
   return (
     <Slide left>
       <Card>
         <CardTitle>{id}</CardTitle>
         <CharacterImg src={'/metadata/character/'+character+'.png'}></CharacterImg>
-        <CardTitle>{character}</CardTitle>
-        <CardTitle>{trackId}</CardTitle>
+        <TrackImg src={'/metadata/track/'+trackId+'.png'}></TrackImg>
       </Card>
     </Slide>
   );

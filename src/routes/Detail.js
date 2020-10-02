@@ -6,6 +6,7 @@ import MatchInfo from "../components/MatchInfo";
 import styled, { keyframes } from "styled-components";
 import Bounce from "react-reveal/Bounce";
 import { Link } from "react-router-dom";
+import Fade from 'react-reveal/Fade';
 
 /* Home.js에서 건너온 state 값을 토대로 usrID로 변환해 주고, 정보를 그리는 메인 페이지 */
 
@@ -52,12 +53,13 @@ const TitleDiv = styled.div`
 const ResultImg = styled.img`
   position: absolute;
   max-width: 100%;
-  top: 30px;
-  left: 50px;
+  top:150px;
+  left:50%;
+  transform:translate(-50%,-50%);
   @media (max-width: 600px) {
     width: 90%;
-    top: 20px;
-    left:5px;
+    top: 100px;
+    left:45%;
   }
 `;
 
@@ -72,9 +74,12 @@ const Title = styled.h1`
     font-size: 13px;
   }
 `;
-const Subtitle = styled.h3`
-  margin-top: 7vh;
-  font-size: 18px;
+const Subtitle = styled.div`
+  font-size: 14px;
+  padding:7px;
+  background-color:#284C7D;
+  color:white;
+  font-weight: 500;
 `;
 const Footer = styled.div`
   font-size: 12px;
@@ -138,6 +143,9 @@ export default () => {
       <Bounce left>
         <ResultImg src={"/result_title.png"}></ResultImg>
       </Bounce>
+      <Fade left>
+        <Subtitle><span style={{fontWeight:700, color:'#57E7FA'}}>{usrName}</span>님 플레이 검색 결과</Subtitle>
+      </Fade>
       <Container>
         <Header>
           {loading && (

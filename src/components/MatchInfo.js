@@ -59,8 +59,11 @@ export default ({ id }) => {
   const { loading, data } = useQuery(GET_MATCHES, {
     variables: { usrId },
   });
+  
+  console.log(data);
 
   return (
+
     <>
       {loading && <Loading></Loading>}
       <Container>
