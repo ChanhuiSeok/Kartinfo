@@ -15,11 +15,35 @@ const Container = styled.div`
   }
 `;
 
-const Loading = styled.div`
-  font-size: 18px;
-  opacity: 0.5;
-  font-weight: 500;
-  margin-top: 10px;
+const StyledSpinner = styled.svg`
+  animation: rotate 2s linear infinite;
+  margin: -25px 0 0 -25px;
+  width: 80px;
+  height: 80px;
+  & .path {
+    stroke: #ffffff;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
 `;
 
 const GET_MATCHES = gql`
@@ -56,20 +80,33 @@ export default ({ id }) => {
   usrId = id;
   console.log(usrId);
 
-  const { loading, data } = useQuery(GET_MATCHES, {
-    variables: { usrId },
+  const { loading, data, error } = useQuery(GET_MATCHES, {
+    variables: { usrId }
   });
-  
-  console.log(data);
 
   return (
-
     <>
-      {loading && <Loading></Loading>}
+      {loading && <>
+              <StyledSpinner viewBox="0 0 50 50">
+                <circle
+                  className="path"
+                  cx="25"
+                  cy="25"
+                  r="20"
+                  fill="none"
+                  strokeWidth="4"
+                />{" "}
+                Loading...
+              </StyledSpinner>
+              <p>로딩중...</p>
+            </>}
       <Container>
-      {data && data.matches[0].matches.map((m) => 
+      
+      {data && data.matches[0]?.matches.map((m) => 
         <Match key={m.matchId} id={m.matchId}
         matchType={m.matchType} character={m.character} trackId={m.trackId}
+        startTime={m.startTime} endTime={m.endTime} player={m.player}
+        playerCount={m.playerCount}
         />
       )}
       </Container>

@@ -34,7 +34,7 @@ const Dao = styled.img`
   max-width:80%;
   top:30px;
   left:0;
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     width: 60%;
     top:20px;
   }
@@ -44,7 +44,7 @@ const Dizni = styled.img`
   max-width:80%;
   top:30px;
   right:0;
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     width: 50%;
     top:30px;
   }
@@ -55,7 +55,7 @@ const Uni = styled.img`
   max-width:13%;
   top:0;
   right:200px;
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     width: 0
   }
 `;
@@ -66,7 +66,29 @@ const Bazzi = styled.img`
   top:0;
   left:200px;
   max-width:40%;
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
+    width: 0
+  }
+`;
+
+const Etti = styled.img`
+  position:absolute;
+  max-width:50%;
+  top:300px;
+  right:100px;
+  max-width:40%;
+  @media (max-width: 700px) {
+    width: 0
+  }
+`;
+
+const Marid = styled.img`
+  position:absolute;
+  max-width:50%;
+  top:300px;
+  left:100px;
+  max-width:40%;
+  @media (max-width: 700px) {
     width: 0
   }
 `;
@@ -161,6 +183,8 @@ export default function App() {
       <Uni src={'/cha3.png'}></Uni>
       </Zoom>
       <Dizni src={'/cha4.png'}></Dizni>
+      <Etti src={'/cha5.png'}></Etti>
+      <Marid src={'/cha6.png'}></Marid>
     </Bounce>
     <Container>     
       <Header>  
