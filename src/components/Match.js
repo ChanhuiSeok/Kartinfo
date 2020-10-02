@@ -178,7 +178,11 @@ export default ({ id, matchType, character, trackId, startTime, playerCount, pla
             <SubTitle>{trackName}</SubTitle>
             <TimeTitle><span style={{fontWeight:'700',color:'navy'}}>주행시간 | </span>{time_Min}분 {time_Sec}초 {time_MSec}</TimeTitle>
           </MatchInfo>
-          {(player.matchRank !== '99' && player.matchRank !== '') && 
+          {(player.matchRank === '1') && 
+          <Ranks><span style={{fontSize:'35px',fontWeight:'700',color:'#FFE73C'}}>{player.matchRank}</span>/
+          <span style={{fontSize:'20px'}}>{playerCount}</span>
+          </Ranks>}
+          {(player.matchRank !== '99' && player.matchRank !== '' && player.matchRank !== '1') && 
           <Ranks><span style={{fontSize:'35px',fontWeight:'700'}}>{player.matchRank}</span>/
           <span style={{fontSize:'20px'}}>{playerCount}</span>
           </Ranks>}

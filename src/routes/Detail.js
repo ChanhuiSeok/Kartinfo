@@ -7,6 +7,7 @@ import styled, { keyframes } from "styled-components";
 import Bounce from "react-reveal/Bounce";
 import { Link } from "react-router-dom";
 import Fade from 'react-reveal/Fade';
+import Tada from 'react-reveal/Tada';
 
 /* Home.js에서 건너온 state 값을 토대로 usrID로 변환해 주고, 정보를 그리는 메인 페이지 */
 
@@ -18,7 +19,7 @@ const Container = styled.div`
   width: 100%;
 `;
 const Header = styled.header`
-min-height:1000px;
+min-height:600px;
   background-color: #2f9fe7;
   background-image: linear-gradient(
       45deg,
@@ -70,7 +71,7 @@ const Title = styled.h1`
   background-color: rgba(0, 0, 0, 0.8);
   padding: 1vh;
   border-radius: 13px;
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     font-size: 13px;
   }
 `;
@@ -87,6 +88,29 @@ const Footer = styled.div`
   text-align: center;
   opacity: 0.7;
   margin: 10px;
+  @media (max-width: 700px) {
+    font-size: 9px;
+  }
+`;
+
+const HomeButton = styled.button`
+  position: absolute;
+  width:52px;
+  height:50px;
+  top:15%;
+  right:25%;
+  background: url('/home.png');
+  cursor:pointer;
+  border:none;
+  transition: all ease 0.3s;
+  &:hover{
+    background: url('/home_hover.png');
+    transition: all ease 0.4s 0s;
+  }
+  @media (max-width: 1100px) {
+    top:10%;
+    right:3%;
+  }
 `;
 
 const StyledSpinner = styled.svg`
@@ -143,6 +167,9 @@ export default () => {
       <Bounce left>
         <ResultImg src={"/result_title.png"}></ResultImg>
       </Bounce>
+      <Link to={'/'}>
+      <HomeButton></HomeButton>
+      </Link>
       <Fade left>
         <Subtitle><span style={{fontWeight:700, color:'#57E7FA'}}>{usrName}</span>님 플레이 검색 결과</Subtitle>
       </Fade>

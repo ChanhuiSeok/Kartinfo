@@ -114,7 +114,7 @@ const Title = styled.h1`
 `;
 const Subtitle = styled.h3`
   margin-top:7vh;
-  font-size: 18px;
+  font-size: 20px;
 `;
 const Footer = styled.div`
   font-size: 12px;
@@ -122,6 +122,9 @@ const Footer = styled.div`
   text-align:center;
   opacity: 0.7;
   margin:10px;
+  @media (max-width: 700px) {
+    font-size: 9px;
+  }
 `;
 const InputField = styled.input`
   font-family:Noto Sans KR;
@@ -192,7 +195,7 @@ export default function App() {
           <TitleImg src={'/title.png'}></TitleImg>
         </Bounce>
         <Fade top>
-        <Title>KartRider 오픈 API로 제작한 유저정보 조회 페이지</Title>
+        <Title>KartRider 오픈 API 기반의 유저정보 조회 페이지</Title>
         <Subtitle>빈 칸에 닉네임을 입력하세요!</Subtitle>
         <InputField
           type="text"
