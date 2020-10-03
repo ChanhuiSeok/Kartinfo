@@ -47,6 +47,7 @@ const CharacterImg = styled.img`
 
 const TrackImg = styled.img`
   width:20%;
+  onerror='this.src="/unknownTrack.png"';
 `;
 
 const KartImg = styled.img`
@@ -130,6 +131,7 @@ function findTrackName(trackId){
       return track[i].name;
     }
   }
+  return "unknownTrack"
 }
 
 function findCharacterName(characterId){
@@ -172,7 +174,9 @@ export default ({ id, matchType, character, trackId, startTime, playerCount, pla
       <Card>
           <CharacterImg src={'/metadata/character/'+character+'.png'}></CharacterImg>
           <KartImg src={'/metadata/kart/'+player.kart+'.png'}></KartImg>
-          <TrackImg src={'/metadata/track/'+trackId+'.png'}></TrackImg>
+          <TrackImg 
+          onError={(e)=>{e.target.src="/blankTrack.png"}}
+          src={'/metadata/track/'+trackId+'.png'}></TrackImg>
           <MatchInfo>
             <TypeTitle>{matchTitle}</TypeTitle>
             <SubTitle>{trackName}</SubTitle>
