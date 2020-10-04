@@ -17,7 +17,13 @@ const Card = styled.div`
   color:black;
   padding:25px; 
   box-shadow:0px 0px 7px 7px rgba(0,0,0,0.15);
-  
+
+  @media (max-width: 1120px) {
+    width:95%;
+    padding:22px;
+    margin-bottom:28px;
+  }
+
   @media (max-width: 700px) {
     width:85%;
     padding:25px;
@@ -34,10 +40,14 @@ const CardTitle = styled.div`
   color:white;
   padding:8px; 
   font-size:13px;
+
+  @media (max-width: 1120px) {
+    width:350px;
+  }
+
   @media (max-width: 700px) {
     width:290px;
     font-size:11px;
-    margin-left:0;
   }
 `;
 
@@ -59,6 +69,9 @@ const KartImg = styled.img`
   width:17%;
   z-index:0;
   margin-left:-100px;
+  @media (max-width: 1120px) {
+    margin-left:-60px;
+  }
   @media (max-width: 700px) {
     margin-left:-40px;
   }
@@ -75,6 +88,10 @@ const TypeTitle = styled.div`
   line-height:50px;
   font-size:30px;
   font-weight:700;
+  @media (max-width: 1120px) {
+    line-height:35px;
+    font-size:24px;
+  }
   @media (max-width: 700px) {
     line-height:20px;
     font-size:17px;
@@ -86,6 +103,9 @@ const SubTitle = styled.div`
   font-size:18px;
   font-weight:100;
   color:#1B4C7C;
+  @media (max-width: 1120px) {
+    font-size:15px;
+  }
   @media (max-width: 700px) {
     font-size:12px;
   }
@@ -97,7 +117,19 @@ const TimeTitle = styled.div`
   font-size:15px;
   margin-top:4em;
   color:#636D78;
+  @media (max-width: 1120px) {
+    font-size:13px;
+    margin-top:4em;
+  }
+  @media (max-width: 950px) {
+    font-size:13px;
+    margin-top:3em;
+  }
   @media (max-width: 700px) {
+    font-size:10px;
+    margin-top:1.5em;
+  }
+  @media (max-width: 500px) {
     font-size:10px;
     margin-top:.8em;
   }
@@ -115,6 +147,13 @@ const Ranks = styled.div`
   padding:7px;
   color:white;
   line-height:110px;
+
+  @media (max-width: 1120px) {
+    width:90px;
+    height:100px;
+    line-height:80px;
+  }
+
   @media (max-width: 700px) {
     width:60px;
     height:40px;
