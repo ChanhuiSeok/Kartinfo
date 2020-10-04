@@ -83,7 +83,6 @@ let usrId = "";
 
 export default ({ id }) => {
   usrId = id;
-  console.log(usrId);
 
   const { loading, data, error } = useQuery(GET_MATCHES, {
     variables: { usrId }
@@ -123,6 +122,7 @@ export default ({ id }) => {
         playerCount={m.playerCount} channelName={m.channelName}
         />
       )}
+      {error && <h1>기록을 불러올 수 없습니다.</h1>}
       </Container>
     </>
   );
