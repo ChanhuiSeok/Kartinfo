@@ -5,7 +5,7 @@
 
 ### 💻 일반 화면
 <img src = "https://i.imgur.com/svTm3pQ.png">
-<img src = "https://i.imgur.com/feDG3pz.png">
+<img src = "https://i.imgur.com/pnwKmJB.png">
 
 ### 📱 모바일 화면
 <img src = "https://i.imgur.com/NmmN27p.png">
