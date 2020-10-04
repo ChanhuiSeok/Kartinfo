@@ -5,9 +5,10 @@ import styled from "styled-components"
 import Bounce from 'react-reveal/Bounce';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
-import Tada from 'react-reveal/Tada';
 import { Link } from "react-router-dom";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faEnvelope, faLaptopCode, faNetworkWired } from '@fortawesome/free-solid-svg-icons'
 
 const Container = styled.div`
   display: flex;
@@ -122,9 +123,9 @@ const Footer = styled.div`
   font-weight: 300;
   text-align:center;
   opacity: 0.7;
-  margin:10px;
+  margin:12px;
   @media (max-width: 700px) {
-    font-size: 9px;
+    font-size: 10px;
   }
 `;
 const InputField = styled.input`
@@ -188,14 +189,14 @@ export default function App() {
         </Bounce>
         <Fade top>
         <Title>KartRider 오픈 API 기반의 유저정보 조회 페이지</Title>
-        <Subtitle>빈 칸에 닉네임을 입력하세요!</Subtitle>
+        <Subtitle>빈 칸에 라이더명을 입력하세요!</Subtitle>
         <InputField
           type="text"
           name="username"
           value={username}
           onChange={onChangeField}
           onKeyPress={handleKeyPress}
-          placeholder="닉네임 입력"
+          placeholder="라이더명 입력"
         ></InputField>
            <Link to ={`/${username}`}>
             <EnterButton></EnterButton>
@@ -205,8 +206,10 @@ export default function App() {
     </Container>
 
     <Footer>
-    본 페이지는 Chrome 브라우저, 데스크톱(1920*1080) 및 모바일에
-        최적화되어 있습니다 | [github] ChanhuiSeok
+    <FontAwesomeIcon icon={faGithub}/> <a href="https://github.com/chanhuiseok/">ChanhuiSeok</a> · 
+    <FontAwesomeIcon icon={faEnvelope}/> <a href="mailto:chanhuicom@gmail.com"> gmail</a> · 
+    <FontAwesomeIcon icon={faLaptopCode}/> <a href="https://developers.nexon.com/kart/">Kartrider API </a> · 
+    <FontAwesomeIcon icon={faNetworkWired}/> <a href="https://github.com/ChanhuiSeok/kartAPI-Graphql">with GraphQL</a>
     </Footer>
     </>
   )

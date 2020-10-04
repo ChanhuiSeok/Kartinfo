@@ -16,6 +16,8 @@ const Card = styled.div`
   float:left;
   color:black;
   padding:25px; 
+  box-shadow:0px 0px 7px 7px rgba(0,0,0,0.15);
+  
   @media (max-width: 700px) {
     width:85%;
     padding:25px;
@@ -27,14 +29,13 @@ const CardTitle = styled.div`
   width:350px;
   border-radius: 5px;
   margin-bottom:-2px;
-  margin-left:.3em;
   background-color:#324B7C;
   float:left;
   color:white;
   padding:8px; 
   font-size:13px;
   @media (max-width: 700px) {
-    width:300px;
+    width:290px;
     font-size:11px;
     margin-left:0;
   }
@@ -44,10 +45,11 @@ const CharacterImg = styled.img`
   position:relative;
   width:20%;
   z-index:1;
-  margin-left:-30px;
+  margin-left:-35px;
 `;
 
 const TrackImg = styled.img`
+  margin-left:5px;
   width:20%;
   onerror='this.src="/unknownTrack.png"';
 `;
@@ -80,19 +82,21 @@ const TypeTitle = styled.div`
 `;
 
 const SubTitle = styled.div`
-  line-height:10px;
+  line-height:13px;
   font-size:18px;
-  color:gray;
+  font-weight:100;
+  color:#1B4C7C;
   @media (max-width: 700px) {
-    font-size:11px;
+    font-size:12px;
   }
 `;
 
 const TimeTitle = styled.div`
   vertical-align:bottom;
-  font-weight:500;
+  font-weight:300;
   font-size:15px;
   margin-top:4em;
+  color:#636D78;
   @media (max-width: 700px) {
     font-size:10px;
     margin-top:.8em;
@@ -103,8 +107,9 @@ const Ranks = styled.div`
   position:relative;
   height:130px;
   float:right;
+  margin-right:-5px;
   border-radius:7px;
-  width:100px;
+  width:95px;
   text-align:center;
   background-color:#2752A2;
   padding:7px;
@@ -114,6 +119,7 @@ const Ranks = styled.div`
     width:60px;
     height:40px;
     line-height:35px;
+    margin-right:-7px;
     font-size:10px;
   }
 `;
@@ -174,14 +180,14 @@ export default ({ id, matchType, character, trackId, startTime, playerCount, pla
       </CardTitle>
       <Card>
           <CharacterImg src={'/metadata/character/'+character+'.png'}></CharacterImg>
-          <KartImg src={'/metadata/kart/'+player.kart+'.png'}></KartImg>
+          <KartImg onError={(e)=>{e.target.src="/unknownKart.png"}} src={'/metadata/kart/'+player.kart+'.png'}></KartImg>
           <TrackImg 
           onError={(e)=>{e.target.src="/blankTrack.png"}}
           src={'/metadata/track/'+trackId+'.png'}></TrackImg>
           <MatchInfo>
             <TypeTitle>{matchTitle}</TypeTitle>
             <SubTitle>{trackName}</SubTitle>
-            <TimeTitle><span style={{fontWeight:'700',color:'navy'}}>주행시간 | </span>{time_Min}분 {time_Sec}초 {time_MSec}</TimeTitle>
+            <TimeTitle><span style={{fontWeight:'700',color:'#1B4C7C'}}>주행시간 | </span>{time_Min}분 {time_Sec}초 {time_MSec}</TimeTitle>
           </MatchInfo>
           {(player.matchRank === '1') && 
           <Ranks><span style={{fontSize:'35px',fontWeight:'700',color:'#FFE73C'}}>{player.matchRank}</span>/

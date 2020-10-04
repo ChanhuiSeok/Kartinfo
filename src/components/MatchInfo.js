@@ -13,6 +13,8 @@ const Container = styled.div`
   margin-left:5%;
   margin-right:5%;
   @media (max-width: 700px) {
+    margin-left:6%;
+    margin-right:4%;
     margin-top:150px;
   }
 `;
@@ -88,7 +90,10 @@ export default ({ id }) => {
 
   return (
     <>
-      {loading && <>
+      {loading && 
+      <div style={{display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',minHeight:'600px', alignItems:'center'}}>
               <StyledSpinner viewBox="0 0 50 50">
                 <circle
                   className="path"
@@ -98,10 +103,9 @@ export default ({ id }) => {
                   fill="none"
                   strokeWidth="4"
                 />{" "}
-                Loading...
               </StyledSpinner>
-              <p>로딩중...</p>
-            </>}
+              <p>불러오는 중...</p>
+      </div>}
       <Container>
       
       {data && data.matches[0]?.matches.map((m) => 
