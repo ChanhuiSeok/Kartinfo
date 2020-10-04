@@ -57,10 +57,10 @@ const ResultImg = styled.img`
   top:150px;
   left:50%;
   transform:translate(-50%,-50%);
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     width: 90%;
-    top: 100px;
-    left:45%;
+    top: 10%;
+    left:50%;
   }
 `;
 
@@ -76,12 +76,27 @@ const Title = styled.h1`
   }
 `;
 const Subtitle = styled.div`
-  font-size: 14px;
-  padding:7px;
+  font-size: 16px;
+  padding:12px;
   background-color:#284C7D;
   color:white;
   font-weight: 500;
+  @media (max-width: 700px) {
+    font-size: 14px;
+  }
 `;
+
+const NickName = styled.span`
+  margin-left:10%;
+  font-weight:700;
+  @media (max-width: 700px) {
+    margin-left:5%;
+  }
+`;
+const Span = styled.span`
+  font-weight:700;
+`;
+
 const Footer = styled.div`
   font-size: 12px;
   font-weight: 300;
@@ -94,22 +109,17 @@ const Footer = styled.div`
 `;
 
 const HomeButton = styled.button`
-  position: absolute;
-  width:52px;
-  height:50px;
-  top:15%;
-  right:25%;
-  background: url('/home.png');
-  cursor:pointer;
+  position: relative;
+  margin-right:10%;
+  float:right;
   border:none;
-  transition: all ease 0.3s;
-  &:hover{
-    background: url('/home_hover.png');
-    transition: all ease 0.4s 0s;
-  }
-  @media (max-width: 1100px) {
-    top:10%;
-    right:3%;
+  background:none;
+  color:white;
+  cursor:pointer;
+  font-weight:700;
+  font-size:14px;
+  @media (max-width: 700px) {
+    margin-right:5%;
   }
 `;
 
@@ -167,11 +177,17 @@ export default () => {
       <Bounce left>
         <ResultImg src={"/result_title.png"}></ResultImg>
       </Bounce>
-      <Link to={'/'}>
-      <HomeButton></HomeButton>
-      </Link>
+      
       <Fade left>
-        <Subtitle><span style={{fontWeight:700, color:'#57E7FA'}}>{usrName}</span>님 플레이 검색 결과</Subtitle>
+
+        <Subtitle>
+          <NickName style={{color:'#57E7FA'}}>{usrName}</NickName>
+          <Span color={'white'}>님 플레이 검색 결과</Span>
+          <Link to={'/'}>
+              <HomeButton>> 홈으로</HomeButton>
+          </Link>
+        </Subtitle>
+
       </Fade>
       <Container>
         <Header>
@@ -198,8 +214,8 @@ export default () => {
         </Header>
       </Container>
       <Footer>
-        본 페이지는 Chrome 브라우저, 데스크톱 환경(1920*1080) 및 모바일에
-        최적화되어 있습니다
+        본 페이지는 Chrome 브라우저, 데스크톱(1920*1080) 및 모바일에
+        최적화되어 있습니다 | [github] ChanhuiSeok
       </Footer>
     </>
   );

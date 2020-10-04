@@ -117,6 +117,7 @@ const Subtitle = styled.h3`
   font-size: 20px;
 `;
 const Footer = styled.div`
+  float:bottom;
   font-size: 12px;
   font-weight: 300;
   text-align:center;
@@ -151,15 +152,6 @@ const EnterButton = styled.button`
     background: url('/button_hover.png');
     transition: all ease 0.4s 0s;
   }
-`;
-
-const FooterCircle = styled.div`
-  position:absolute;
-  bottom:0;
-  background: rgb(0,0,0, 0.5);
-  border-radius:50%;
-  width:1000px;
-  height:100px;
 `;
 
 export default function App() {
@@ -213,7 +205,8 @@ export default function App() {
     </Container>
 
     <Footer>
-      본 페이지는 Chrome 브라우저, 데스크톱 환경(1920*1080) 및 모바일에 최적화되어 있습니다
+    본 페이지는 Chrome 브라우저, 데스크톱(1920*1080) 및 모바일에
+        최적화되어 있습니다 | [github] ChanhuiSeok
     </Footer>
     </>
   )

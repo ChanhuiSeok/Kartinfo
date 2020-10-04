@@ -80,7 +80,6 @@ const TypeTitle = styled.div`
 const SubTitle = styled.div`
   line-height:10px;
   font-size:18px;
-  font-weight:500;
   color:gray;
   @media (max-width: 700px) {
     font-size:11px;
