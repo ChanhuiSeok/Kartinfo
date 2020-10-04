@@ -40,14 +40,15 @@ const CardTitle = styled.div`
   color:white;
   padding:8px; 
   font-size:13px;
-
+  
   @media (max-width: 1120px) {
     width:350px;
   }
 
   @media (max-width: 700px) {
-    width:290px;
-    font-size:11px;
+    width:300px;
+    font-size:11.5px;
+    font-weight:600;
   }
 `;
 
@@ -102,14 +103,14 @@ const Speed = styled.span`
 border-radius:5px;
 padding:5px;
 color: white;
-font-weight:100;
+font-weight:500;
 margin:5px;
 font-size:14px;
 background-color:#1789D3;
 @media (max-width: 700px) {
-  font-size:9.5px;
+  font-size:11px;
   margin:3px;
-  padding:1.5px;
+  padding:3px;
 }
 `;
 
@@ -133,7 +134,7 @@ const TimeTitle = styled.div`
   margin-top:4em;
   color:#636D78;
   @media (max-width: 1120px) {
-    font-size:13px;
+    font-size:14px;
     margin-top:4em;
   }
   @media (max-width: 950px) {
@@ -141,11 +142,11 @@ const TimeTitle = styled.div`
     margin-top:3em;
   }
   @media (max-width: 700px) {
-    font-size:10px;
+    font-size:12px;
     margin-top:1.5em;
   }
   @media (max-width: 500px) {
-    font-size:10px;
+    font-size:12px;
     margin-top:.8em;
   }
 `;
@@ -170,10 +171,10 @@ const Ranks = styled.div`
   }
 
   @media (max-width: 700px) {
-    width:55px;
-    height:40px;
-    line-height:35px;
-    margin-right:-7px;
+    width:53px;
+    height:45px;
+    line-height:40px;
+    margin-right:-13px;
     font-size:10px;
   }
 `;
