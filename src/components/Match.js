@@ -12,13 +12,14 @@ const Card = styled.div`
   width:1000px;
   border-radius: 7px;
   margin-bottom:40px;
-  margin-left:.3em;
   background-color:white;
   float:left;
   color:black;
-  padding:15px; 
+  padding:25px; 
   @media (max-width: 700px) {
-    width:90%;
+    width:85%;
+    padding:25px;
+    margin-bottom:28px;
   }
 `;
 
@@ -35,6 +36,7 @@ const CardTitle = styled.div`
   @media (max-width: 700px) {
     width:300px;
     font-size:11px;
+    margin-left:0;
   }
 `;
 
@@ -72,8 +74,8 @@ const TypeTitle = styled.div`
   font-size:30px;
   font-weight:700;
   @media (max-width: 700px) {
-    line-height:30px;
-    font-size:22px;
+    line-height:20px;
+    font-size:17px;
   }
 `;
 
@@ -92,7 +94,7 @@ const TimeTitle = styled.div`
   font-size:15px;
   margin-top:4em;
   @media (max-width: 700px) {
-    font-size:12px;
+    font-size:10px;
     margin-top:.8em;
   }
 `;
@@ -190,7 +192,7 @@ export default ({ id, matchType, character, trackId, startTime, playerCount, pla
           <span style={{fontSize:'20px'}}>{playerCount}</span>
           </Ranks>}
           {(player.matchRank === '99' || player.matchRank === '') &&
-          <Ranks style={{backgroundColor:'#C4CAD4'}}><span style={{fontStyle: 'italic',fontSize:'23px',fontWeight:'500'}}>리타이어</span>
+          <Ranks style={{backgroundColor:'#C4CAD4'}}><span style={{fontStyle: 'italic',fontWeight:'500'}}>리타이어</span>
           </Ranks>
           }
       </Card>

@@ -59,7 +59,7 @@ const ResultImg = styled.img`
   transform:translate(-50%,-50%);
   @media (max-width: 700px) {
     width: 90%;
-    top: 10%;
+    top: 110px;
     left:50%;
   }
 `;
@@ -94,7 +94,7 @@ const NickName = styled.span`
   }
 `;
 const Span = styled.span`
-  font-weight:700;
+  font-weight:300;
 `;
 
 const Footer = styled.div`
