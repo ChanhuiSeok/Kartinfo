@@ -177,7 +177,7 @@ function findTrackName(trackId){
       return track[i].name;
     }
   }
-  return "unknownTrack"
+  return "알 수 없는 트랙"
 }
 
 function findCharacterName(characterId){
@@ -186,6 +186,7 @@ function findCharacterName(characterId){
       return character[i].name;
     }
   }
+  return "알 수 없는 캐릭터"
 }
 
 function findKartName(kartId){
@@ -194,6 +195,7 @@ function findKartName(kartId){
       return kart[i].name;
     }
   }
+  return "알 수 없는 카트"
 }
 
 export default ({ id, matchType, character, trackId, startTime, playerCount, player }) => {
@@ -218,7 +220,7 @@ export default ({ id, matchType, character, trackId, startTime, playerCount, pla
        <span style={{color:'#61E9B4'}}> {kartName} </span>탑승
       </CardTitle>
       <Card>
-          <CharacterImg src={'/metadata/character/'+character+'.png'}></CharacterImg>
+          <CharacterImg onError={(e)=>{e.target.src="/unknownChar.png"}} src={'/metadata/character/'+character+'.png'}></CharacterImg>
           <KartImg onError={(e)=>{e.target.src="/unknownKart.png"}} src={'/metadata/kart/'+player.kart+'.png'}></KartImg>
           <TrackImg 
           onError={(e)=>{e.target.src="/blankTrack.png"}}
