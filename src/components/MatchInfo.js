@@ -13,8 +13,8 @@ const Container = styled.div`
   margin-left:5%;
   margin-right:5%;
   @media (max-width: 700px) {
-    margin-left:6%;
-    margin-right:4%;
+    margin-left:3%;
+    margin-right:2%;
     margin-top:150px;
   }
 `;
@@ -58,6 +58,7 @@ const GET_MATCHES = gql`
       accountNo
       matchId
       matchType
+      channelName
       teamId
       character
       startTime
@@ -112,7 +113,14 @@ export default ({ id }) => {
         <Match key={m.matchId} id={m.matchId}
         matchType={m.matchType} character={m.character} trackId={m.trackId}
         startTime={m.startTime} endTime={m.endTime} player={m.player}
-        playerCount={m.playerCount}
+        playerCount={m.playerCount} channelName={m.channelName}
+        />
+      )}
+      {data && data.matches[1]?.matches.map((m) => 
+        <Match key={m.matchId} id={m.matchId}
+        matchType={m.matchType} character={m.character} trackId={m.trackId}
+        startTime={m.startTime} endTime={m.endTime} player={m.player}
+        playerCount={m.playerCount} channelName={m.channelName}
         />
       )}
       </Container>

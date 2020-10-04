@@ -25,7 +25,7 @@ const Card = styled.div`
   }
 
   @media (max-width: 700px) {
-    width:85%;
+    width:86%;
     padding:25px;
     margin-bottom:28px;
   }
@@ -86,28 +86,43 @@ const MatchInfo = styled.div`
 
 const TypeTitle = styled.div`
   line-height:50px;
-  font-size:30px;
+  font-size:27px;
   font-weight:700;
   @media (max-width: 1120px) {
     line-height:35px;
-    font-size:24px;
+    font-size:23px;
   }
   @media (max-width: 700px) {
     line-height:20px;
-    font-size:17px;
+    font-size:16px;
   }
 `;
 
+const Speed = styled.span`
+border-radius:5px;
+padding:5px;
+color: white;
+font-weight:100;
+margin:5px;
+font-size:14px;
+background-color:#1789D3;
+@media (max-width: 700px) {
+  font-size:9.5px;
+  margin:3px;
+  padding:1.5px;
+}
+`;
+
 const SubTitle = styled.div`
-  line-height:13px;
+  line-height:16px;
   font-size:18px;
-  font-weight:100;
+  font-weight:600;
   color:#1B4C7C;
   @media (max-width: 1120px) {
     font-size:15px;
   }
   @media (max-width: 700px) {
-    font-size:12px;
+    font-size:13px;
   }
 `;
 
@@ -155,7 +170,7 @@ const Ranks = styled.div`
   }
 
   @media (max-width: 700px) {
-    width:60px;
+    width:55px;
     height:40px;
     line-height:35px;
     margin-right:-7px;
@@ -198,7 +213,7 @@ function findKartName(kartId){
   return "알 수 없는 카트"
 }
 
-export default ({ id, matchType, character, trackId, startTime, playerCount, player }) => {
+export default ({ id, matchType, character, trackId, startTime, playerCount, channelName, player }) => {
   const matchTitle = findMatchType(matchType);
   const trackName = findTrackName(trackId);
   const characterName = findCharacterName(character);
@@ -226,7 +241,23 @@ export default ({ id, matchType, character, trackId, startTime, playerCount, pla
           onError={(e)=>{e.target.src="/blankTrack.png"}}
           src={'/metadata/track/'+trackId+'.png'}></TrackImg>
           <MatchInfo>
-            <TypeTitle>{matchTitle}</TypeTitle>
+            <TypeTitle>{matchTitle}
+            {(channelName === "speedIndiFast" || channelName === "speedTeamFast") && 
+            <Speed>빠름</Speed>
+            }
+            {(channelName === "speedIndiFastest" || channelName === "speedTeamFastest") && 
+            <Speed style={{backgroundColor:'#E15F93'}}>매우 빠름</Speed>
+            }
+            {(channelName === "speedTeamInfinit" || channelName === "speedIndiInfinit") && 
+            <Speed style={{backgroundColor:'#9644C6'}}>무한</Speed>
+            }
+            {(channelName === "itemNewItemTeamFastest2Enchant" || channelName === "itemNewItemIndiFastest2Enchant") && 
+            <Speed style={{backgroundColor:'#C83158'}}>가장 빠름</Speed>
+            }
+            {(channelName === "itemNewItemTeamFast2Enchant" || channelName === "itemNewItemIndiFast2Enchant") && 
+            <Speed style={{backgroundColor:'#3EB5E8'}}>빠름</Speed>
+            }
+              </TypeTitle>
             <SubTitle>{trackName}</SubTitle>
             <TimeTitle><span style={{fontWeight:'700',color:'#1B4C7C'}}>주행시간 | </span>{time_Min}분 {time_Sec}초 {time_MSec}</TimeTitle>
           </MatchInfo>
