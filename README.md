@@ -8,7 +8,7 @@
 <img src = "https://i.imgur.com/pnwKmJB.png">
 
 ### 📱 모바일 화면
-<img src = "https://i.imgur.com/NmmN27p.png">
+<img src = "https://i.imgur.com/xNHrbiF.png">
 
 ### ⭐ 사용한 API
 * 카트라이더 오픈 API : https://developers.nexon.com/kart
