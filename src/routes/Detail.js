@@ -185,7 +185,7 @@ export default () => {
 
         <Subtitle>
           <NickName style={{color:'#57E7FA'}}>{usrName}</NickName>
-          <Span color={'white'}>님 플레이 검색 결과(최근 10개 플레이 기록)</Span>
+          <Span color={'white'}>님 플레이 검색 결과(최근 10개 기록)</Span>
           <Link to={'/'}>
               <HomeButton>> 홈으로</HomeButton>
           </Link>
