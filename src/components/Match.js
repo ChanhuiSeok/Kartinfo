@@ -236,11 +236,11 @@ export default ({ id, matchType, character, trackId, startTime, playerCount, cha
        <span style={{color:'#61E9B4'}}> {kartName} </span>탑승
       </CardTitle>
       <Card>
-          <CharacterImg onError={(e)=>{e.target.src="/unknownChar.png"}} src={'/metadata/character/'+character+'.png'}></CharacterImg>
-          <KartImg onError={(e)=>{e.target.src="/unknownKart.png"}} src={'/metadata/kart/'+player.kart+'.png'}></KartImg>
+          <CharacterImg onError={(e)=>{e.target.src="../unknownChar.png"}} src={'../metadata/character/'+character+'.png'}></CharacterImg>
+          <KartImg onError={(e)=>{e.target.src="../unknownKart.png"}} src={'../metadata/kart/'+player.kart+'.png'}></KartImg>
           <TrackImg 
           onError={(e)=>{e.target.src="/blankTrack.png"}}
-          src={'/metadata/track/'+trackId+'.png'}></TrackImg>
+          src={'../metadata/track/'+trackId+'.png'}></TrackImg>
           <MatchInfo>
             <TypeTitle>{matchTitle}
             {(channelName === "speedIndiFast" || channelName === "speedTeamFast") && 

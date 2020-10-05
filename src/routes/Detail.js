@@ -10,6 +10,7 @@ import Fade from 'react-reveal/Fade';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope, faLaptopCode, faNetworkWired } from '@fortawesome/free-solid-svg-icons'
+import result_title from '../result_title.png'
 
 /* Home.js에서 건너온 state 값을 토대로 usrID로 변환해 주고, 정보를 그리는 메인 페이지 */
 
@@ -178,7 +179,7 @@ export default () => {
   return (
     <>
       <Bounce left>
-        <ResultImg src={"/result_title.png"}></ResultImg>
+        <ResultImg src={result_title}></ResultImg>
       </Bounce>
       
       <Fade left>

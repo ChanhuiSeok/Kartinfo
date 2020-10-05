@@ -9,6 +9,13 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope, faLaptopCode, faNetworkWired } from '@fortawesome/free-solid-svg-icons'
+import cha1 from '../cha1.png'
+import cha2 from '../cha2.png'
+import cha3 from '../cha3.png'
+import cha4 from '../cha4.png'
+import cha5 from '../cha5.png'
+import cha6 from '../cha6.png'
+import title from '../title.png'
 
 const Container = styled.div`
   display: flex;
@@ -142,7 +149,7 @@ const InputField = styled.input`
   }
 `;
 const EnterButton = styled.button`
-  background: url('/button.png');
+  background: url('./button.png');
   cursor:pointer;
   width:140px;
   height:70px;
@@ -172,20 +179,20 @@ export default function App() {
     <>
     <Bounce top>
       <Zoom top>
-      <Bazzi src={'/cha2.png'}></Bazzi>
+      <Bazzi src={cha2}></Bazzi>
       </Zoom>
-      <Dao src={'/cha1.png'}></Dao>
+      <Dao src={cha1}></Dao>
       <Zoom top>
-      <Uni src={'/cha3.png'}></Uni>
+      <Uni src={cha3}></Uni>
       </Zoom>
-      <Dizni src={'/cha4.png'}></Dizni>
-      <Etti src={'/cha5.png'}></Etti>
-      <Marid src={'/cha6.png'}></Marid>
+      <Dizni src={cha4}></Dizni>
+      <Etti src={cha5}></Etti>
+      <Marid src={cha6}></Marid>
     </Bounce>
     <Container>     
       <Header>  
         <Bounce left>
-          <TitleImg src={'/title.png'}></TitleImg>
+          <TitleImg src={title}></TitleImg>
         </Bounce>
         <Fade top>
         <Title>KartRider 오픈 API 기반의 유저정보 조회 페이지</Title>

@@ -12,6 +12,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "apollo-boost": "^0.4.9",
+    "file-loader": "^6.1.0",
     "graphql": "^15.3.0",
     "moment": "^2.29.0",
     "react": "^16.13.1",
@@ -26,7 +27,7 @@
     "start": "webpack-dev-server --hot",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "yarn start"
+    "heroku-postbuild": "yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"
