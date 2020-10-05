@@ -64,7 +64,10 @@ module.exports = {
           {
             from: "./src/metadata",
             to: "metadata",
-        },
+        },{
+          from: "./public",
+          to: "public",
+      },
       ],
   })
   ]
