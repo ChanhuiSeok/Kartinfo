@@ -4,6 +4,6 @@
   "description": "react app with pwa",
   "background_color": "#ffffff",
   "crossorigin": "use-credentials",
-  "theme_color": "#eeeeee",
+  "theme_color": "#000000",
   "filename": "manifest.json"
 }

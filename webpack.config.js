@@ -41,7 +41,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -53,9 +53,6 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: './public/index.html', // public/index.html 파일을 읽는다.
       filename: 'index.html' // output으로 출력할 파일은 index.html 이다.
-    }),
-    new MiniCssExtractPlugin({
-      filename: 'style.css'
     }),
     new CopyWebpackPlugin({
       patterns: [

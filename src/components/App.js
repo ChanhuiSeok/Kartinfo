@@ -2,7 +2,7 @@ import React from 'react';
 import {HashRouter as Router, Route} from "react-router-dom"
 import Home from "../routes/Home"
 import Detail from "../routes/Detail"
-import {createGlobalStyle} from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
   body {
