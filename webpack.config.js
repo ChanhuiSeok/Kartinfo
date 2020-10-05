@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ManifestPlugin = require("webpack-manifest-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -67,5 +68,9 @@ module.exports = {
         },
       ],
   }),
+  new ManifestPlugin({
+    fileName: "manifest.json",
+    basePath: "./build"
+  })
   ]
 };

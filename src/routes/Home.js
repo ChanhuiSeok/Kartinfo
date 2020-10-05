@@ -142,7 +142,7 @@ const InputField = styled.input`
   }
 `;
 const EnterButton = styled.button`
-  background: url('./button.png');
+  background: url('image/button.png');
   cursor:pointer;
   width:140px;
   height:70px;
@@ -150,7 +150,7 @@ const EnterButton = styled.button`
   transition: all ease 0.3s;
 
   &:hover{
-    background: url('/button_hover.png');
+    background: url('image/button_hover.png');
     transition: all ease 0.4s 0s;
   }
 `;
