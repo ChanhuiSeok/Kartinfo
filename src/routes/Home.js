@@ -9,13 +9,6 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope, faLaptopCode, faNetworkWired } from '@fortawesome/free-solid-svg-icons'
-import cha1 from '../cha1.png'
-import cha2 from '../cha2.png'
-import cha3 from '../cha3.png'
-import cha4 from '../cha4.png'
-import cha5 from '../cha5.png'
-import cha6 from '../cha6.png'
-import title from '../title.png'
 
 const Container = styled.div`
   display: flex;
@@ -179,20 +172,20 @@ export default function App() {
     <>
     <Bounce top>
       <Zoom top>
-      <Bazzi src={cha2}></Bazzi>
+      <Bazzi src={"image/cha2.png"}></Bazzi>
       </Zoom>
-      <Dao src={cha1}></Dao>
+      <Dao src={"image/cha1.png"}></Dao>
       <Zoom top>
-      <Uni src={cha3}></Uni>
+      <Uni src={"image/cha3.png"}></Uni>
       </Zoom>
-      <Dizni src={cha4}></Dizni>
-      <Etti src={cha5}></Etti>
-      <Marid src={cha6}></Marid>
+      <Dizni src={"image/cha4.png"}></Dizni>
+      <Etti src={"image/cha5.png"}></Etti>
+      <Marid src={"image/cha6.png"}></Marid>
     </Bounce>
     <Container>     
       <Header>  
         <Bounce left>
-          <TitleImg src={title}></TitleImg>
+          <TitleImg src={"image/title.png"}></TitleImg>
         </Bounce>
         <Fade top>
         <Title>KartRider 오픈 API 기반의 유저정보 조회 페이지</Title>

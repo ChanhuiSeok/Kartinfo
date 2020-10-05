@@ -20,7 +20,13 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: "/node_modules",
-        use: ['babel-loader'],
+        use: {
+          loader: 'babel-loader',
+          options: { 
+            presets: ['@babel/preset-env', '@babel/react'],
+            plugins:['@babel/plugin-proposal-class-properties']
+          }
+        }
       },
       {
         test: /\.html$/,
@@ -52,9 +58,13 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
           {
-              from: "./*",
-              to: "../src",
+              from: "./src/metadata",
+              to: "image",
           },
+          {
+            from: "./src/metadata",
+            to: "metadata",
+        },
       ],
   }),
   ]
