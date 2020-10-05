@@ -26,7 +26,7 @@
     "start": "webpack-dev-server --hot",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "yarn build"
+    "heroku-postbuild": "yarn start"
   },
   "eslintConfig": {
     "extends": "react-app"
