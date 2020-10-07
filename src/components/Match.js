@@ -284,6 +284,15 @@ export default ({ posts, loading }) => {
   }
   return (
     <>
+      {posts.length === 0 &&
+      <>
+        <Slide left>
+          <div>
+            <img src={'image/unknownRecord.png'} alt=""></img>
+          </div>
+        </Slide>
+      </>
+      }
       {posts.map(post => (
         <div key={post.matchId}>
         <Slide left>

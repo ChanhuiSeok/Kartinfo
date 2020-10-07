@@ -30,12 +30,26 @@
 .button
 {
     position: relative;
-    top: 50%;
     width: 114px;
     height: 36px;
     margin: -20px auto 0 auto;
     overflow: hidden;
+    
+    margin-bottom:15px;
 }
+@media screen and (max-width: 768px)
+{ 
+  .button {
+    position: relative;
+    width: 114px;
+    height: 36px;
+    margin: -20px auto 0 auto;
+    overflow: hidden;
+    margin-top:10px;
+    margin-bottom:15px;
+  }
+}
+
 
 .button.r, .button.r .layer
 {
@@ -89,6 +103,7 @@
     border-radius: 2px;
     transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
 }
+
 
 #button-16 .checkbox:active + .knobs:before
 {

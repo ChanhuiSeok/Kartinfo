@@ -100,13 +100,13 @@ const Span = styled.span`
 `;
 
 const Footer = styled.div`
-  font-size: 12px;
-  font-weight: 300;
+  font-size: 11px;
+  font-weight: 100;
   text-align: center;
   opacity: 0.7;
-  margin: 12px;
+  margin: 15px;
   @media (max-width: 700px) {
-    font-size: 10px;
+    font-size: 9px;
   }
 `;
 

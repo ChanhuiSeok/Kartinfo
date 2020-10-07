@@ -119,13 +119,13 @@ const Subtitle = styled.h3`
 `;
 const Footer = styled.div`
   float:bottom;
-  font-size: 12px;
-  font-weight: 300;
-  text-align:center;
+  font-size: 11px;
+  font-weight: 100;
+  text-align: center;
   opacity: 0.7;
-  margin:12px;
+  margin:15px;
   @media (max-width: 700px) {
-    font-size: 10px;
+    font-size: 9px;
   }
 `;
 const InputField = styled.input`
