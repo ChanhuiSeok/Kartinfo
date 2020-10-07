@@ -1,0 +1,113 @@
+/* Button 16 */
+
+*:focus
+{
+  outline: none;
+}
+.row
+{
+    display: table-row;
+}
+
+.toggle-button-cover
+{
+    display: table-cell;
+    position: relative;
+    width: 200px;
+    height: 140px;
+    box-sizing: border-box;
+}
+
+.button-cover, .knobs, .layer
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.button
+{
+    position: relative;
+    top: 50%;
+    width: 114px;
+    height: 36px;
+    margin: -20px auto 0 auto;
+    overflow: hidden;
+}
+
+.button.r, .button.r .layer
+{
+    border-radius: 100px;
+}
+
+.button.b2
+{
+    border-radius: 2px;
+}
+
+.checkbox
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.knobs
+{
+    z-index: 2;
+}
+
+.layer
+{
+    width: 100%;
+    background-color: #ebf7fc;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+#button-16 .knobs:before
+{
+    content: '스피드전';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 60px;
+    height: 12px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 9px 4px;
+    background-color: #03A9F4;
+    border-radius: 2px;
+    transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+}
+
+#button-16 .checkbox:active + .knobs:before
+{
+    width: 46px;
+}
+
+#button-16 .checkbox:checked:active + .knobs:before
+{
+    margin-left: -26px;
+}
+
+#button-16 .checkbox:checked + .knobs:before
+{
+    content: '아이템전';
+    left: 42px;
+    background-color: #F44336;
+}
+
+#button-16 .checkbox:checked ~ .layer
+{
+    background-color: #fcebeb;
+}

@@ -10,7 +10,6 @@ import Fade from 'react-reveal/Fade';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope, faLaptopCode, faNetworkWired } from '@fortawesome/free-solid-svg-icons'
-import ReactPaginate from "react-paginate";
 
 /* Home.js에서 건너온 state 값을 토대로 usrID로 변환해 주고, 정보를 그리는 메인 페이지 */
 
@@ -193,6 +192,7 @@ export default () => {
         </Subtitle>
 
       </Fade>
+      
       <Container>
         <Header>
           {loading && (

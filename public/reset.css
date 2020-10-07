@@ -109,8 +109,10 @@ body {
   line-height: 1;
 }
 ol,
-ul {
+ul,li {
+  float:left;
   list-style: none;
+  text-align:center;
 }
 blockquote,
 q {

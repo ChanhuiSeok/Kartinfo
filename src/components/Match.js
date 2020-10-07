@@ -288,7 +288,7 @@ export default ({ posts, loading }) => {
         <div key={post.matchId}>
         <Slide left>
           <CardTitle>
-            {post.startTime} / <span style={{ color: '#FCD968' }}>{findCharacterName(post.character)}</span> 착용 /
+            {moment(post.startTime).format('YYYY-MM-DD')} / <span style={{ color: '#FCD968' }}>{findCharacterName(post.character)}</span> 착용 /
        <span style={{ color: '#61E9B4' }}> {findKartName(post.player.kart)} </span>탑승
       </CardTitle>
           <Card>

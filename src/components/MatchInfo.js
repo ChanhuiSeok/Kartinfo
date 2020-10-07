@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/react-hooks";
 import Match from "../components/Match";
 import Pagination from "../components/Pagination";
 import { useState, useEffect } from 'react';
+import ToggleButton from '../components/ToggleButton'
 
 /* 받아온 usrId 값을 가지고 matches 뮤테이션을 실행하여 결과를 그리는 컴포넌트 */
 
@@ -94,25 +95,37 @@ export default ({ id }) => {
   const [loads, setLoads] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
+  const [checked, setChecked] = useState(0);
+  const handleClick = () => {
+    if (checked === 0) {
+      setChecked(1);
+    }
+    else if (checked === 1) {
+      setChecked(0);
+    }
+  }
 
-  useEffect(()=>{
+  useEffect(() => {
     setLoads(true);
     setPosts(data);
     setLoads(false);
-  },[data]);
+  }, [data]);
 
   const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost- postsPerPage;
-  let currentPosts;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  if(typeof data !== "undefined"){
-    console.log(data)
-    currentPosts = data.matches[0].matches.slice(indexOfFirstPost, indexOfLastPost);
+  function currentPosts(num){
+    let currentPosts = 0;
+    if (typeof data !== "undefined") {
+      currentPosts = data.matches[num].matches.slice(indexOfFirstPost, indexOfLastPost);
+    }
+    return currentPosts;
   }
   
+
   return (
     <>
       {loading &&
@@ -134,10 +147,29 @@ export default ({ id }) => {
           <p>불러오는 중...</p>
         </div>}
       <Container>
-        {data && posts && 
+        {data && posts &&
           <>
-          <Pagination postsPerPage={postsPerPage} totalPosts={data.matches[0]?.matches.length} paginate={paginate}/>
-          <Match key={data.matches[0]?.matches.matchId} posts={currentPosts} loading={loads} />
+            <div style={{ position: 'absolute', left: '50' }}>
+              <div className="button b2" id="button-16">
+                <input type="checkbox" className="checkbox" onChange={handleClick} checked={checked} />
+                <div className="knobs">
+                  <span></span>
+                </div>
+                <div className="layer"></div>
+              </div>
+            </div>
+            {checked === 0 && <>
+              <Pagination postsPerPage={postsPerPage} totalPosts={data.matches[0]?.matches.length} paginate={paginate} />
+              <Match key={data.matches[0]?.matches.matchId} posts={currentPosts(0)} loading={loads} />
+              <Match key={data.matches[1]?.matches.matchId} posts={currentPosts(1)} loading={loads} />
+            </>
+            }
+            {checked === 1 && <>
+              <Pagination postsPerPage={postsPerPage} totalPosts={data.matches[2]?.matches.length} paginate={paginate} />
+              <Match key={data.matches[2]?.matches.matchId} posts={currentPosts(2)} loading={loads} />
+              <Match key={data.matches[3]?.matches.matchId} posts={currentPosts(3)} loading={loads} />
+            </>
+            }
           </>
         }
         {error && <h1>기록을 불러올 수 없습니다.</h1>}
