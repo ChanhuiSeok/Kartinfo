@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
 import Match from "../components/Match";
+import Pagination from "../components/Pagination";
+import { useState, useEffect } from 'react';
 
 /* 받아온 usrId 값을 가지고 matches 뮤테이션을 실행하여 결과를 그리는 컴포넌트 */
 
@@ -81,48 +83,64 @@ const GET_MATCHES = gql`
 `;
 let usrId = "";
 
+
 export default ({ id }) => {
   usrId = id;
-
   const { loading, data, error } = useQuery(GET_MATCHES, {
     variables: { usrId }
   });
 
+  const [posts, setPosts] = useState([]);
+  const [loads, setLoads] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+
+  useEffect(()=>{
+    setLoads(true);
+    setPosts(data);
+    setLoads(false);
+  },[data]);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost- postsPerPage;
+  let currentPosts;
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  if(typeof data !== "undefined"){
+    console.log(data)
+    currentPosts = data.matches[0].matches.slice(indexOfFirstPost, indexOfLastPost);
+  }
+  
   return (
     <>
-      {loading && 
-      <div style={{display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',minHeight:'600px', alignItems:'center'}}>
-              <StyledSpinner viewBox="0 0 50 50">
-                <circle
-                  className="path"
-                  cx="25"
-                  cy="25"
-                  r="20"
-                  fill="none"
-                  strokeWidth="4"
-                />{" "}
-              </StyledSpinner>
-              <p>불러오는 중...</p>
-      </div>}
+      {loading &&
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center', minHeight: '600px', alignItems: 'center'
+        }}>
+          <StyledSpinner viewBox="0 0 50 50">
+            <circle
+              className="path"
+              cx="25"
+              cy="25"
+              r="20"
+              fill="none"
+              strokeWidth="4"
+            />{" "}
+          </StyledSpinner>
+          <p>불러오는 중...</p>
+        </div>}
       <Container>
-      
-      {data && data.matches[0]?.matches.map((m) => 
-        <Match key={m.matchId} id={m.matchId}
-        matchType={m.matchType} character={m.character} trackId={m.trackId}
-        startTime={m.startTime} endTime={m.endTime} player={m.player}
-        playerCount={m.playerCount} channelName={m.channelName}
-        />
-      )}
-      {data && data.matches[1]?.matches.map((m) => 
-        <Match key={m.matchId} id={m.matchId}
-        matchType={m.matchType} character={m.character} trackId={m.trackId}
-        startTime={m.startTime} endTime={m.endTime} player={m.player}
-        playerCount={m.playerCount} channelName={m.channelName}
-        />
-      )}
-      {error && <h1>기록을 불러올 수 없습니다.</h1>}
+        {data && posts && 
+          <>
+          <Pagination postsPerPage={postsPerPage} totalPosts={data.matches[0]?.matches.length} paginate={paginate}/>
+          <Match key={data.matches[0]?.matches.matchId} posts={currentPosts} loading={loads} />
+          </>
+        }
+        {error && <h1>기록을 불러올 수 없습니다.</h1>}
       </Container>
     </>
   );

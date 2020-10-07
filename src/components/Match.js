@@ -179,103 +179,161 @@ const Ranks = styled.div`
   }
 `;
 
-function findMatchType(matchType){
-  for(var i = 0; i<gameType.length; i++){
-    if (gameType[i].id === matchType){
+
+const StyledSpinner = styled.svg`
+  animation: rotate 2s linear infinite;
+  margin: -25px 0 0 -25px;
+  width: 80px;
+  height: 80px;
+  & .path {
+    stroke: #ffffff;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+`;
+
+function findMatchType(matchType) {
+  for (var i = 0; i < gameType.length; i++) {
+    if (gameType[i].id === matchType) {
       return gameType[i].name;
     }
   }
 }
 
-function findTrackName(trackId){
-  for(var i = 0; i<track.length; i++){
-    if (track[i].id === trackId){
+function findTrackName(trackId) {
+  for (var i = 0; i < track.length; i++) {
+    if (track[i].id === trackId) {
       return track[i].name;
     }
   }
   return "알 수 없는 트랙"
 }
 
-function findCharacterName(characterId){
-  for(var i = 0; i<character.length; i++){
-    if (character[i].id === characterId){
+function findCharacterName(characterId) {
+  for (var i = 0; i < character.length; i++) {
+    if (character[i].id === characterId) {
       return character[i].name;
     }
   }
   return "알 수 없는 캐릭터"
 }
 
-function findKartName(kartId){
-  for(var i = 0; i<kart.length; i++){
-    if (kart[i].id === kartId){
+function findKartName(kartId) {
+  for (var i = 0; i < kart.length; i++) {
+    if (kart[i].id === kartId) {
       return kart[i].name;
     }
   }
   return "알 수 없는 카트"
 }
 
-export default ({ id, matchType, character, trackId, startTime, playerCount, channelName, player }) => {
-  const matchTitle = findMatchType(matchType);
-  const trackName = findTrackName(trackId);
-  const characterName = findCharacterName(character);
-  const kartName = findKartName(player.kart);
-  const time = player.matchTime
-  const dates = moment(startTime).format('YYYY-MM-DD');
-  const elapsedMSec = time;
+function makeElapsedMin(time) {
   const elapsedSec = parseInt(time / 1000);
   const elapsedMin = parseInt(elapsedSec / 60);
   const time_Min = elapsedMin;
-  const cal_Sec = elapsedMin * 60;
-  const time_Sec = elapsedSec - cal_Sec;
-  const time_MSec = (elapsedMSec - (elapsedMin*60*1000))%1000;
+  return time_Min;
+}
+function makeTimeSec(time, elapsedMin) {
+  const result = parseInt(time / 1000) - (elapsedMin * 60);
+  return result;
+}
+function makeTimeMSec(time, elapsedMin) {
+  const result = (time - (elapsedMin * 60 * 1000)) % 1000;
+  return result;
+}
+
+export default ({ posts, loading }) => {
+  if (loading) {
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center', minHeight: '600px', alignItems: 'center'
+      }}>
+        <StyledSpinner viewBox="0 0 50 50">
+          <circle
+            className="path"
+            cx="25"
+            cy="25"
+            r="20"
+            fill="none"
+            strokeWidth="4"
+          />{" "}
+        </StyledSpinner>
+        <p>불러오는 중...</p>
+      </div>);
+  }
   return (
-    <div style={{margin:'0 auto'}}>
-    <Slide left>
-      <CardTitle>
-       {dates} / <span style={{color:'#FCD968'}}>{characterName}</span> 착용 / 
-       <span style={{color:'#61E9B4'}}> {kartName} </span>탑승
+    <>
+      {posts.map(post => (
+        <div key={post.matchId}>
+        <Slide left>
+          <CardTitle>
+            {post.startTime} / <span style={{ color: '#FCD968' }}>{findCharacterName(post.character)}</span> 착용 /
+       <span style={{ color: '#61E9B4' }}> {findKartName(post.player.kart)} </span>탑승
       </CardTitle>
-      <Card>
-          <CharacterImg onError={(e)=>{e.target.src="image/unknownChar.png"}} src={'image/character/'+character+'.png'}></CharacterImg>
-          <KartImg onError={(e)=>{e.target.src="image/unknownKart.png"}} src={'image/kart/'+player.kart+'.png'}></KartImg>
-          <TrackImg 
-          onError={(e)=>{e.target.src="image/blankTrack.png"}}
-          src={'image/track/'+trackId+'.png'}></TrackImg>
-          <MatchInfo>
-            <TypeTitle>{matchTitle}
-            {(channelName === "speedIndiFast" || channelName === "speedTeamFast") && 
-            <Speed>빠름</Speed>
-            }
-            {(channelName === "speedIndiFastest" || channelName === "speedTeamFastest") && 
-            <Speed style={{backgroundColor:'#E15F93'}}>매우 빠름</Speed>
-            }
-            {(channelName === "speedTeamInfinit" || channelName === "speedIndiInfinit") && 
-            <Speed style={{backgroundColor:'#9644C6'}}>무한</Speed>
-            }
-            {(channelName === "itemNewItemTeamFastest2Enchant" || channelName === "itemNewItemIndiFastest2Enchant") && 
-            <Speed style={{backgroundColor:'#C83158'}}>가장 빠름</Speed>
-            }
-            {(channelName === "itemNewItemTeamFast2Enchant" || channelName === "itemNewItemIndiFast2Enchant") && 
-            <Speed style={{backgroundColor:'#3EB5E8'}}>빠름</Speed>
-            }
+          <Card>
+            <CharacterImg onError={(e) => { e.target.src = "image/unknownChar.png" }} src={'image/character/' + post.character + '.png'}></CharacterImg>
+            <KartImg onError={(e) => { e.target.src = "image/unknownKart.png" }} src={'image/kart/' + post.player.kart + '.png'}></KartImg>
+            <TrackImg
+              onError={(e) => { e.target.src = "image/blankTrack.png" }}
+              src={'image/track/' + post.trackId + '.png'}></TrackImg>
+            <MatchInfo>
+              <TypeTitle>{findMatchType(post.matchType)}
+                {(post.channelName === "speedIndiFast" || post.channelName === "speedTeamFast") &&
+                  <Speed>빠름</Speed>
+                }
+                {(post.channelName === "speedIndiFastest" || post.channelName === "speedTeamFastest") &&
+                  <Speed style={{ backgroundColor: '#E15F93' }}>매우 빠름</Speed>
+                }
+                {(post.channelName === "speedTeamInfinit" || post.channelName === "speedIndiInfinit") &&
+                  <Speed style={{ backgroundColor: '#9644C6' }}>무한</Speed>
+                }
+                {(post.channelName === "itemNewItemTeamFastest2Enchant" || post.channelName === "itemNewItemIndiFastest2Enchant") &&
+                  <Speed style={{ backgroundColor: '#C83158' }}>가장 빠름</Speed>
+                }
+                {(post.channelName === "itemNewItemTeamFast2Enchant" || post.channelName === "itemNewItemIndiFast2Enchant") &&
+                  <Speed style={{ backgroundColor: '#3EB5E8' }}>빠름</Speed>
+                }
               </TypeTitle>
-            <SubTitle>{trackName}</SubTitle>
-            <TimeTitle><span style={{fontWeight:'700',color:'#1B4C7C'}}>주행시간 | </span>{time_Min}분 {time_Sec}초 {time_MSec}</TimeTitle>
-          </MatchInfo>
-          {(player.matchRank === '1') && 
-          <Ranks><span style={{fontSize:'35px',fontWeight:'700',color:'#FFE73C'}}>{player.matchRank}</span>/
-          <span style={{fontSize:'20px'}}>{playerCount}</span>
-          </Ranks>}
-          {(player.matchRank !== '99' && player.matchRank !== '' && player.matchRank !== '1') && 
-          <Ranks><span style={{fontSize:'35px',fontWeight:'700'}}>{player.matchRank}</span>/
-          <span style={{fontSize:'20px'}}>{playerCount}</span>
-          </Ranks>}
-          {(player.matchRank === '99' || player.matchRank === '') &&
-          <Ranks style={{backgroundColor:'#C4CAD4'}}><span style={{fontStyle: 'italic',fontWeight:'500'}}>리타이어</span>
-          </Ranks>
-          }
-      </Card>
-    </Slide>
-    </div>
+              <SubTitle>{findTrackName(post.trackId)}</SubTitle>
+              <TimeTitle><span style={{ fontWeight: '700', color: '#1B4C7C' }}>주행시간 | </span>{makeElapsedMin(post.player.matchTime)}분 {makeTimeSec(post.player.matchTime, makeElapsedMin(post.player.matchTime))}초 {makeTimeMSec(post.player.matchTime, makeElapsedMin(post.player.matchTime))}</TimeTitle>
+            </MatchInfo>
+            {(post.player.matchRank === '1') &&
+              <Ranks><span style={{ fontSize: '35px', fontWeight: '700', color: '#FFE73C' }}>{post.player.matchRank}</span>/
+          <span style={{ fontSize: '20px' }}>{post.playerCount}</span>
+              </Ranks>}
+            {(post.player.matchRank !== '99' && post.player.matchRank !== '' && post.player.matchRank !== '1') &&
+              <Ranks><span style={{ fontSize: '35px', fontWeight: '700' }}>{post.player.matchRank}</span>/
+          <span style={{ fontSize: '20px' }}>{post.playerCount}</span>
+              </Ranks>}
+            {(post.player.matchRank === '99' || post.player.matchRank === '') &&
+              <Ranks style={{ backgroundColor: '#C4CAD4' }}><span style={{ fontStyle: 'italic', fontWeight: '500' }}>리타이어</span>
+              </Ranks>
+            }
+          </Card>
+        </Slide>
+        </div>
+      ))}
+    </>
   );
 };
