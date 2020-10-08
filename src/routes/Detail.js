@@ -75,10 +75,10 @@ const Subtitle = styled.div`
 `;
 
 const NickName = styled.span`
-  margin-left:12%;
+  margin-left:5%;
   font-weight:700;
   @media (max-width: 700px) {
-    margin-left:11%;
+    margin-left:3%;
   }
 `;
 const Span = styled.span`
@@ -101,11 +101,13 @@ const HomeButton = styled.button`
   margin-right:10%;
   float:right;
   border:none;
+  outline:none;
   background:none;
   color:white;
   cursor:pointer;
   font-weight:700;
   font-size:14px;
+  margin-bottom:3px;
   @media (max-width: 700px) {
     font-size:12px;
     margin-right:5%;
@@ -143,16 +145,8 @@ const StyledSpinner = styled.svg`
   }
 `;
 
-const AudioDiv = styled.div`
-  position:absolute;
-  top:9.5px;
-  left:8%;
-  @media(max-width:700px){
-    left:5%;
-  }
-`;
-
 const AudioButton = styled.button`
+  margin-left:10%;
   background-color:transparent;
   font-size:18px;
   cursor:pointer;
@@ -160,6 +154,7 @@ const AudioButton = styled.button`
   border:0;
   outline:0;
   @media(max-width:700px){
+    margin-left:1%;
     font-size:15px;
   }
 `;
@@ -197,20 +192,21 @@ export default () => {
       <Fade left>
 
         <Subtitle>
+
+          <Play volume={0.06} loop={true} howl={howl} pause={!play} />
+          <AudioButton onClick={() => setPlay(!play)}>
+            {play ? <FontAwesomeIcon icon={faVolumeMute} /> : <FontAwesomeIcon icon={faVolumeUp} />}
+          </AudioButton>
+
           <NickName style={{ color: '#57E7FA' }}>{usrName}</NickName>
           <Span color={'white'}>님 검색결과(최근 200판)</Span>
           <Link to={'/'}>
             <HomeButton>> 홈으로</HomeButton>
           </Link>
+
         </Subtitle>
 
 
-        <AudioDiv>
-          <Play volume={0.06} loop={true} howl={howl} pause={!play} />
-          <AudioButton onClick={() => setPlay(!play)}>
-            {play ? <FontAwesomeIcon icon={faVolumeMute} /> : <FontAwesomeIcon icon={faVolumeUp}/> }
-          </AudioButton>
-        </AudioDiv>
 
       </Fade>
 
