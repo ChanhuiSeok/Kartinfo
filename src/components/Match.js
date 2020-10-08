@@ -32,22 +32,22 @@ const Card = styled.div`
 `;
 
 const CardTitle = styled.div`
-  width:350px;
+  width:390px;
   border-radius: 5px;
   margin-bottom:-2px;
   background-color:#324B7C;
   float:left;
   color:white;
   padding:8px; 
-  font-size:13px;
+  font-size:15px;
   
   @media (max-width: 1120px) {
-    width:350px;
+    width:390px;
   }
 
   @media (max-width: 700px) {
-    width:300px;
-    font-size:11.5px;
+    width:330px;
+    font-size:12.5px;
     font-weight:600;
   }
 `;
@@ -287,7 +287,7 @@ export default ({ posts, loading }) => {
       {posts.length === 0 &&
       <>
         <Slide left>
-          <div>
+          <div style={{textAlign:'center'}}>
             <img src={'image/unknownRecord.png'} alt=""></img>
           </div>
         </Slide>

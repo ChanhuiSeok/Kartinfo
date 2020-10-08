@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
@@ -9,7 +9,8 @@ import { Link } from "react-router-dom";
 import Fade from 'react-reveal/Fade';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faEnvelope, faLaptopCode, faNetworkWired } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faLaptopCode, faNetworkWired, faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons'
+import { Play, useHowl } from 'rehowl'
 
 /* Home.js에서 건너온 state 값을 토대로 usrID로 변환해 주고, 정보를 그리는 메인 페이지 */
 
@@ -49,10 +50,6 @@ min-height:600px;
   width: 100%;
 `;
 
-const TitleDiv = styled.div`
-    margin-bottom:300px;
-`;
-
 const ResultImg = styled.img`
   position: absolute;
   max-width: 100%;
@@ -66,17 +63,6 @@ const ResultImg = styled.img`
   }
 `;
 
-const Title = styled.h1`
-  font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 20px;
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 1vh;
-  border-radius: 13px;
-  @media (max-width: 700px) {
-    font-size: 13px;
-  }
-`;
 const Subtitle = styled.div`
   font-size: 16px;
   padding:12px;
@@ -89,10 +75,10 @@ const Subtitle = styled.div`
 `;
 
 const NickName = styled.span`
-  margin-left:10%;
+  margin-left:12%;
   font-weight:700;
   @media (max-width: 700px) {
-    margin-left:5%;
+    margin-left:11%;
   }
 `;
 const Span = styled.span`
@@ -157,6 +143,27 @@ const StyledSpinner = styled.svg`
   }
 `;
 
+const AudioDiv = styled.div`
+  position:absolute;
+  top:9.5px;
+  left:8%;
+  @media(max-width:700px){
+    left:5%;
+  }
+`;
+
+const AudioButton = styled.button`
+  background-color:transparent;
+  font-size:18px;
+  cursor:pointer;
+  color:white;
+  border:0;
+  outline:0;
+  @media(max-width:700px){
+    font-size:15px;
+  }
+`;
+
 const GET_USRINFO = gql`
   query getUserInfo($usrName: String!) {
     user(usrName: $usrName) {
@@ -167,7 +174,9 @@ const GET_USRINFO = gql`
 `;
 let { usrId } = "";
 
+
 export default () => {
+
   const { usrName } = useParams();
   const { loading, data, error } = useQuery(GET_USRINFO, {
     variables: { usrName },
@@ -175,24 +184,36 @@ export default () => {
   if (data && data.user) {
     usrId = data.user.accessId;
   }
+
+  const [play, setPlay] = useState(false)
+  const { howl } = useHowl({ src: 'public/snow.mp3' })
+
   return (
     <>
+
       <Bounce left>
         <ResultImg src={"image/result_title.png"}></ResultImg>
       </Bounce>
-      
       <Fade left>
 
         <Subtitle>
-          <NickName style={{color:'#57E7FA'}}>{usrName}</NickName>
-          <Span color={'white'}>님 플레이 검색 결과(최대 200개)</Span>
+          <NickName style={{ color: '#57E7FA' }}>{usrName}</NickName>
+          <Span color={'white'}>님 검색결과(최근 200판)</Span>
           <Link to={'/'}>
-              <HomeButton>> 홈으로</HomeButton>
+            <HomeButton>> 홈으로</HomeButton>
           </Link>
         </Subtitle>
 
+
+        <AudioDiv>
+          <Play volume={0.06} loop={true} howl={howl} pause={!play} />
+          <AudioButton onClick={() => setPlay(!play)}>
+            {play ? <FontAwesomeIcon icon={faVolumeMute} /> : <FontAwesomeIcon icon={faVolumeUp}/> }
+          </AudioButton>
+        </AudioDiv>
+
       </Fade>
-      
+
       <Container>
         <Header>
           {loading && (
@@ -212,17 +233,17 @@ export default () => {
             </>
           )}
           {data &&
-            <MatchInfo id={data.user.accessId}></MatchInfo>
+            <MatchInfo id={data.user.accessId} nickname={usrName}></MatchInfo>
           }
           {error && <h1>유저정보가 없습니다.</h1>}
         </Header>
       </Container>
       <Footer>
-    <FontAwesomeIcon icon={faGithub}/> <a href="https://github.com/chanhuiseok/">ChanhuiSeok</a> · 
-    <FontAwesomeIcon icon={faEnvelope}/> <a href="mailto:chanhuicom@gmail.com"> gmail</a> · 
-    <FontAwesomeIcon icon={faLaptopCode}/> <a href="https://developers.nexon.com/kart/">Kartrider API </a> · 
-    <FontAwesomeIcon icon={faNetworkWired}/> <a href="https://github.com/ChanhuiSeok/kartAPI-Graphql">with GraphQL</a>
-    </Footer>
+        <FontAwesomeIcon icon={faGithub} /> <a href="https://github.com/chanhuiseok/">ChanhuiSeok</a> ·
+    <FontAwesomeIcon icon={faEnvelope} /> <a href="mailto:chanhuicom@gmail.com"> gmail</a> ·
+    <FontAwesomeIcon icon={faLaptopCode} /> <a href="https://developers.nexon.com/kart/">Kartrider API </a> ·
+    <FontAwesomeIcon icon={faNetworkWired} /> <a href="https://github.com/ChanhuiSeok/kartAPI-Graphql">with GraphQL</a>
+      </Footer>
     </>
   );
 };

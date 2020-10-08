@@ -99,7 +99,7 @@
     text-align: center;
     line-height: 1;
     padding: 9px 4px;
-    background-color: #03A9F4;
+    background-color: #eb75d7;
     border-radius: 2px;
     transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
 }
@@ -119,7 +119,7 @@
 {
     content: '아이템전';
     left: 42px;
-    background-color: #F44336;
+    background-color: #7e73dd;
 }
 
 #button-16 .checkbox:checked ~ .layer

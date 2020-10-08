@@ -7,6 +7,10 @@ import Match from "../components/Match";
 import Pagination from "../components/Pagination";
 import { useState, useEffect } from 'react';
 import ToggleButton from '../components/ToggleButton'
+import Tada from 'react-reveal/Tada';
+import Zoom from 'react-reveal/Zoom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrophy, faMedal, faTachometerAlt, faGift } from '@fortawesome/free-solid-svg-icons'
 
 /* 받아온 usrId 값을 가지고 matches 뮤테이션을 실행하여 결과를 그리는 컴포넌트 */
 
@@ -56,6 +60,158 @@ const StyledSpinner = styled.svg`
   }
 `;
 
+const PersonInfo = styled.div`
+  margin:0 auto;
+  background-color:#284C7D;
+  width:805px;
+  padding:20px;
+  height:100%;
+  border-radius:10px;
+  margin-bottom:50px;
+  overflow:auto; 
+  border:2px solid #1F3D73;
+  box-shadow: 6px 6px #1D284E;
+  @media (max-width: 700px) {
+    padding:13px;
+    margin-bottom:25px;
+    width:90%;
+  }
+  @media (max-width: 400px) {
+    padding:13px;
+    margin-bottom:25px;
+    width:320px;
+  }
+  @media (max-width: 350px) {
+    padding:13px;
+    margin-bottom:25px;
+    width:300px;
+  }
+`;
+
+const ImgDiv = styled.div`
+  background-image:url('image/light.png');
+  background-size:cover;
+  float:left;
+  margin:0 auto;
+  width:30%;
+  height:100%;
+  line-height:100%;
+  text-align:center;
+  border-radius:10px;
+  margin-right:35px;
+  @media (max-width: 700px) {
+    margin-right:15px;
+  }
+`;
+
+const CharacterImg = styled.img`
+  padding:10px;
+  position:relative;
+  display:block;
+  margin-top:8px;
+  margin-left:-10px;
+  width:100%;
+  object-fit:contain;
+  z-index:1;
+  @media (max-width:700px){
+    width:95%;
+  }
+`;
+
+const Nickname = styled.p`
+  font-size:23px;
+  font-weight:600;
+  color:white;
+  background-color:#102158;
+  border-radius:7px;
+  padding:15px;
+  margin:4px;
+  @media(max-width:700px){
+    padding:8px;
+    font-size:15px;
+  }
+`;
+
+const InfoDiv = styled.div`
+  width:64%;
+  float:left;
+`;
+
+const RankInfo = styled.div`
+  display:block;
+  margin-bottom:14px;
+  padding:15px;
+  height:100%;
+  border-radius:10px;
+  background-color:#1F345C;
+  border-radius:10px;
+  @media (max-width: 700px) {
+    padding:9px;
+    margin-bottom:6px;
+  }
+`;
+
+const InfoTitle = styled.span`
+  font-size:22px;
+  font-weight:500;
+  @media(max-width: 700px){
+    font-size:14px;
+  }
+`;
+
+const InfoValue = styled.span`
+  float:right;
+  font-size:22px;
+  font-weight:500;
+  color:white;
+  @media(max-width: 700px){
+    font-size:14px;
+  }
+`;
+
+const TypeInfo = styled.div`
+  display:block;
+  float:left;
+  width: 43%;
+  padding:15px;
+  height:100%;
+  border-radius:10px;
+  background-color:#1F345C;
+  border-radius:10px;
+  @media (max-width: 700px) {
+    width:39%;
+    float:left;
+    padding:9px;
+  }
+`;
+
+const TypeTitle = styled.span`
+  float:left;
+  font-size:22px;
+  font-weight:500;
+  @media(max-width: 700px){
+    font-size:14px;
+  }
+`;
+const TypeTitleTwo = styled.span`
+  float:left;
+  font-size:22px;
+  font-weight:500;
+  @media(max-width: 700px){
+    display:none;
+  }
+`;
+
+const TypeValue = styled.span`
+  float:right;
+  font-size:22px;
+  font-weight:500;
+  color:white;
+  @media(max-width: 700px){
+    font-size:14px;
+  }
+`;
+
 const GET_MATCHES = gql`
   query getMatchInfo($usrId: String!) {
     matches(usrId: $usrId) {
@@ -88,7 +244,7 @@ const GET_MATCHES = gql`
 let usrId = "";
 
 
-export default ({ id }) => {
+export default ({ id, nickname }) => {
   usrId = id;
   const { loading, data, error } = useQuery(GET_MATCHES, {
     variables: { usrId }
@@ -153,23 +309,44 @@ export default ({ id }) => {
   item.push('14e772d195642279cf6c8307125044274db371c1b08fc3dd6553e50d76d2b3aa');
 
   // 스피드전 저장
-  var speedArr=[];
+  var speedArr = [];
   // 아이템전 저장
-  var itemArr=[];
+  var itemArr = [];
+
+  var rank1=0;
+  var rank2=0;
+  var rank3=0;
+
+  // 1등 횟수 저장
+  if (typeof data !== 'undefined') {
+    for (var l in data.matches) {
+      for (var m in data.matches[l].matches) {
+        if (data.matches[l].matches[m].player.matchRank === '1') {
+          rank1 = rank1 + 1;
+        }  
+        else if (data.matches[l].matches[m].player.matchRank === '2') {
+          rank2 = rank2 + 1;
+        } 
+        else if (data.matches[l].matches[m].player.matchRank === '3') {
+          rank3 = rank3 + 1;
+        }    
+      }
+    }
+  }
 
   if (typeof data !== 'undefined') {
     for (var i in data.matches) {
       // console.log()함수를 이용해 array
-      for (var j in data.matches[i].matches){
+      for (var j in data.matches[i].matches) {
 
-        for (var prop in speed){
-          if (speed[prop] === data.matches[i].matches[j].matchType){
+        for (var prop in speed) {
+          if (speed[prop] === data.matches[i].matches[j].matchType) {
             speedArr.push(data.matches[i].matches[j]);
             break;
           }
         }
-        for (var prop2 in item){
-          if (item[prop2] === data.matches[i].matches[j].matchType){
+        for (var prop2 in item) {
+          if (item[prop2] === data.matches[i].matches[j].matchType) {
             itemArr.push(data.matches[i].matches[j]);
             break;
           }
@@ -180,7 +357,7 @@ export default ({ id }) => {
   // 정렬
   speedArr.sort((a, b) => (Date.parse(a.startTime) < Date.parse(b.startTime)) ? 1 : -1);
   itemArr.sort((a, b) => (Date.parse(a.startTime) < Date.parse(b.startTime)) ? 1 : -1);
-  
+
   return (
     <>
       {loading &&
@@ -204,6 +381,37 @@ export default ({ id }) => {
       <Container>
         {data && posts &&
           <>
+          <Zoom left>
+            <PersonInfo>
+              <ImgDiv>
+                <CharacterImg onError={(e) => { e.target.src = "image/unknownChar.png" }} src={'image/character/' + data.matches[0].matches[0].character + '.png'}>
+                </CharacterImg>
+                <Nickname>{nickname}</Nickname>
+              </ImgDiv>
+              <InfoDiv>
+                <RankInfo style={{ border: '1px solid #28A7CF' }}>
+                  <InfoTitle style={{ color: '#FFEC00' }}><FontAwesomeIcon icon={faTrophy}></FontAwesomeIcon> 1위 달성</InfoTitle>
+                  <InfoValue>{rank1}회</InfoValue>
+                </RankInfo>
+                <RankInfo>
+                  <InfoTitle style={{ color: '#53E567' }}><FontAwesomeIcon icon={faMedal}></FontAwesomeIcon> 2위 달성</InfoTitle>
+                  <InfoValue>{rank2}회</InfoValue>
+                </RankInfo>
+                <RankInfo>
+                  <InfoTitle style={{ color: '#5FDFF3 ' }}><FontAwesomeIcon icon={faMedal}></FontAwesomeIcon> 3위 달성</InfoTitle>
+                  <InfoValue>{rank3}회</InfoValue>
+                </RankInfo>
+                <TypeInfo>
+                  <TypeTitle style={{ color: '#FA75E6' }}><FontAwesomeIcon icon={faTachometerAlt}></FontAwesomeIcon></TypeTitle> <TypeTitleTwo>{'\u00A0'}스피드전 </TypeTitleTwo>
+                  <TypeValue><span style={{ color: '#FA75E6' }}>{speedArr.length}</span>회</TypeValue>
+                </TypeInfo>
+                <TypeInfo style={{float:'right'}}>
+                  <TypeTitle style={{ color: '#AA88FF' }}><FontAwesomeIcon icon={faGift}></FontAwesomeIcon> </TypeTitle> <TypeTitleTwo>{'\u00A0'}아이템전 </TypeTitleTwo>
+                  <TypeValue><span style={{ color: '#AA88FF' }}>{itemArr.length}</span>회</TypeValue>
+                </TypeInfo>
+              </InfoDiv>
+            </PersonInfo>
+            </Zoom>
             <div>
               <div className="button b2" id="button-16">
                 <input type="checkbox" className="checkbox" onChange={handleClick} checked={checked} />
