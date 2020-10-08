@@ -16,7 +16,7 @@ const PageUl = styled.ul`
 const PageLi = styled.li`
   display:inline-block;
   font-size:17px;
-  font-weight:300;
+  font-weight:600;
   padding:5px;
   border-radius:5px;
   width:25px;

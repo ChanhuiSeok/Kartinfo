@@ -101,12 +101,12 @@ export default ({ id }) => {
   const [checked, setChecked] = useState(0);
   const handleClick = () => {
     if (checked === 0) {
-      setChecked(1);
       setCurrentPage(1);
+      setChecked(1);
     }
     else if (checked === 1) {
-      setChecked(0);
       setCurrentPage(1);
+      setChecked(0);
     }
   }
 
