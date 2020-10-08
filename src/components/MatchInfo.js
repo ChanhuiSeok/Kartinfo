@@ -102,9 +102,11 @@ export default ({ id }) => {
   const handleClick = () => {
     if (checked === 0) {
       setChecked(1);
+      setCurrentPage(1);
     }
     else if (checked === 1) {
       setChecked(0);
+      setCurrentPage(1);
     }
   }
 
