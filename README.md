@@ -5,10 +5,10 @@
 
 ### 💻 일반 화면
 <img src = "https://i.imgur.com/svTm3pQ.png">
-<img src = "https://i.imgur.com/ehxJtCS.png">
+<img src = "https://i.imgur.com/kDBPIGe.png">
 
 ### 📱 모바일 화면
-<img src = "https://i.imgur.com/xNHrbiF.png">
+<img src = "https://i.imgur.com/voucOVR.png">
 
 ### ⭐ 사용한 API
 * 카트라이더 오픈 API : https://developers.nexon.com/kart
