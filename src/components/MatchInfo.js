@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
 import Match from "../components/Match";
@@ -102,6 +102,7 @@ const ImgDiv = styled.div`
   @media (max-width: 700px) {
     margin-right:15px;
   }
+  
 `;
 
 const CharacterImg = styled.img`
@@ -118,17 +119,40 @@ const CharacterImg = styled.img`
   }
 `;
 
+const MoveGradient = keyframes`
+0% {
+  background-position: 0% 50%;
+}
+50% {
+  background-position: 100% 50%;
+}
+100% {
+  background-position: 0% 50%;
+}
+`
+
+const NickNameDiv = styled.div`
+  display:block;
+  margin:0 auto;
+  text-align:center;
+  padding:1px;
+  background: linear-gradient(45deg,#FC4BED,#2DEEFB,#2DDF6B,#FEF273);
+  background-size: 150% 150%;
+  border-radius:10px;
+  animation: ${MoveGradient} 2s infinite;
+`;
+
 const Nickname = styled.p`
   font-size:23px;
   font-weight:600;
   color:white;
   background-color:#102158;
   border-radius:7px;
-  padding:15px;
-  margin:4px;
+  padding:9px;
+  margin:2px;
   @media(max-width:700px){
-    padding:8px;
-    font-size:15px;
+    padding:9px;
+    font-size:14px;
   }
 `;
 
@@ -149,6 +173,35 @@ const RankInfo = styled.div`
     padding:9px;
     margin-bottom:6px;
   }
+`;
+
+const Gradient = keyframes`
+0% {
+  background-position: 0% 50%;
+}
+50% {
+  background-position: 100% 50%;
+}
+100% {
+  background-position: 0% 50%;
+}
+`
+
+const RankInfoRank1 = styled.div`
+  display:block;
+  margin-bottom:14px;
+  padding:15px;
+  height:100%;
+  border: 1px solid #28A7CF;
+  border-radius:10px;
+  background: linear-gradient(45deg,#FE5CBC,#723AFF,#3AC3FF,#2DDF6B);
+  background-size: 150% 150%;
+  border-radius:10px;
+  @media (max-width: 700px) {
+    padding:9px;
+    margin-bottom:6px;
+  }
+  animation: ${Gradient} 3s ease infinite;
 `;
 
 const InfoTitle = styled.span`
@@ -386,13 +439,15 @@ export default ({ id, nickname }) => {
               <ImgDiv>
                 <CharacterImg onError={(e) => { e.target.src = "image/unknownChar.png" }} src={'image/character/' + data.matches[0].matches[0].character + '.png'}>
                 </CharacterImg>
-                <Nickname>{nickname}</Nickname>
+                <NickNameDiv>
+                  <Nickname>{nickname}</Nickname>
+                </NickNameDiv>
               </ImgDiv>
               <InfoDiv>
-                <RankInfo style={{ border: '1px solid #28A7CF' }}>
+                <RankInfoRank1>
                   <InfoTitle style={{ color: '#FFEC00' }}><FontAwesomeIcon icon={faTrophy}></FontAwesomeIcon> 1위 달성</InfoTitle>
                   <InfoValue>{rank1}회</InfoValue>
-                </RankInfo>
+                </RankInfoRank1>
                 <RankInfo>
                   <InfoTitle style={{ color: '#53E567' }}><FontAwesomeIcon icon={faMedal}></FontAwesomeIcon> 2위 달성</InfoTitle>
                   <InfoValue>{rank2}회</InfoValue>
