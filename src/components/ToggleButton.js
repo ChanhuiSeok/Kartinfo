@@ -1,14 +1,14 @@
 import React from 'react';
 import './Toggle.css'
 
-const ToggleButton = () => {
+const ToggleButton = ({onChange, checked}) => {
   return (
-    <div class="button b2" id="button-16">
-      <input type="checkbox" class="checkbox" />
-      <div class="knobs">
+    <div className="button b2" id="button-16">
+      <input type="checkbox" className="checkbox" onChange={onChange} checked={checked} />
+      <div className="knobs">
         <span></span>
       </div>
-      <div class="layer"></div>
+      <div className="layer"></div>
     </div>
   );
 };

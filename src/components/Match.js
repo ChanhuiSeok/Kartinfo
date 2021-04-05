@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { FASTEST_CH, FAST_CH, INF_CH, ITEM_FASTEST_CH, ITEM_FAST_CH } from "../metadata/channelType"
 import styled from "styled-components";
 import Slide from 'react-reveal/Slide';
 import gameType from '../jsonData/gameType.json'
@@ -211,41 +211,12 @@ const StyledSpinner = styled.svg`
   }
 `;
 
-function findMatchType(matchType) {
-  for (var i = 0; i < gameType.length; i++) {
-    if (gameType[i].id === matchType) {
-      return gameType[i].name;
-    }
+function findItems({ items, target, unknownMsg }) {
+  for (let i in items) {
+    if (items[i].id === target) return items[i].name;
   }
+  return unknownMsg;
 }
-
-function findTrackName(trackId) {
-  for (var i = 0; i < track.length; i++) {
-    if (track[i].id === trackId) {
-      return track[i].name;
-    }
-  }
-  return "알 수 없는 트랙"
-}
-
-function findCharacterName(characterId) {
-  for (var i = 0; i < character.length; i++) {
-    if (character[i].id === characterId) {
-      return character[i].name;
-    }
-  }
-  return "알 수 없는 캐릭터"
-}
-
-function findKartName(kartId) {
-  for (var i = 0; i < kart.length; i++) {
-    if (kart[i].id === kartId) {
-      return kart[i].name;
-    }
-  }
-  return "알 수 없는 카트"
-}
-
 function makeElapsedMin(time) {
   const elapsedSec = parseInt(time / 1000);
   const elapsedMin = parseInt(elapsedSec / 60);
@@ -285,62 +256,65 @@ export default ({ posts, loading }) => {
   return (
     <>
       {posts.length === 0 &&
-      <>
-        <Slide left>
-          <div style={{textAlign:'center'}}>
-            <img src={'image/unknownRecord.png'} alt=""></img>
-          </div>
-        </Slide>
-      </>
+        <>
+          <Slide left>
+            <div style={{ textAlign: 'center' }}>
+              <img src={'image/unknownRecord.png'} alt=""></img>
+            </div>
+          </Slide>
+        </>
       }
       {posts.map(post => (
         <div key={post.matchId}>
-        <Slide left>
-          <CardTitle>
-            {moment(post.startTime).format('YYYY-MM-DD')} / <span style={{ color: '#FCD968' }}>{findCharacterName(post.character)}</span> 착용 /
-       <span style={{ color: '#61E9B4' }}> {findKartName(post.player.kart)} </span>탑승
+          <Slide left>
+            <CardTitle>
+              {moment(post.startTime).format('YYYY-MM-DD')} / <span style={{ color: '#FCD968' }}>{findItems({ items: character, target: post.character, unknownMsg: "알 수 없는 캐릭터" })}</span> 착용 /
+       <span style={{ color: '#61E9B4' }}> {findItems({ items: kart, target: post.player.kart, unknownMsg: "알 수 없는 카트" })} </span>탑승
       </CardTitle>
-          <Card>
-            <CharacterImg onError={(e) => { e.target.src = "image/unknownChar.png" }} src={'image/character/' + post.character + '.png'}></CharacterImg>
-            <KartImg onError={(e) => { e.target.src = "image/unknownKart.png" }} src={'image/kart/' + post.player.kart + '.png'}></KartImg>
-            <TrackImg
-              onError={(e) => { e.target.src = "image/blankTrack.png" }}
-              src={'image/track/' + post.trackId + '.png'}></TrackImg>
-            <MatchInfo>
-              <TypeTitle>{findMatchType(post.matchType)}
-                {(post.channelName === "speedIndiFast" || post.channelName === "speedTeamFast") &&
-                  <Speed>빠름</Speed>
-                }
-                {(post.channelName === "speedIndiFastest" || post.channelName === "speedTeamFastest") &&
-                  <Speed style={{ backgroundColor: '#E15F93' }}>매우 빠름</Speed>
-                }
-                {(post.channelName === "speedTeamInfinit" || post.channelName === "speedIndiInfinit") &&
-                  <Speed style={{ backgroundColor: '#9644C6' }}>무한</Speed>
-                }
-                {(post.channelName === "itemNewItemTeamFastest2Enchant" || post.channelName === "itemNewItemIndiFastest2Enchant") &&
-                  <Speed style={{ backgroundColor: '#C83158' }}>가장 빠름</Speed>
-                }
-                {(post.channelName === "itemNewItemTeamFast2Enchant" || post.channelName === "itemNewItemIndiFast2Enchant") &&
-                  <Speed style={{ backgroundColor: '#3EB5E8' }}>빠름</Speed>
-                }
-              </TypeTitle>
-              <SubTitle>{findTrackName(post.trackId)}</SubTitle>
-              <TimeTitle><span style={{ fontWeight: '700', color: '#1B4C7C' }}>주행시간 | </span>{makeElapsedMin(post.player.matchTime)}분 {makeTimeSec(post.player.matchTime, makeElapsedMin(post.player.matchTime))}초 {makeTimeMSec(post.player.matchTime, makeElapsedMin(post.player.matchTime))}</TimeTitle>
-            </MatchInfo>
-            {(post.player.matchRank === '1') &&
-              <Ranks><span style={{ fontSize: '35px', fontWeight: '700', color: '#FFE73C' }}>{post.player.matchRank}</span>/
+            <Card>
+              <CharacterImg onError={(e) => { e.target.src = "image/unknownChar.png" }} src={'image/character/' + post.character + '.png'}></CharacterImg>
+              <KartImg onError={(e) => { e.target.src = "image/unknownKart.png" }} src={'image/kart/' + post.player.kart + '.png'}></KartImg>
+              <TrackImg
+                onError={(e) => { e.target.src = "image/blankTrack.png" }}
+                src={'image/track/' + post.trackId + '.png'}></TrackImg>
+              <MatchInfo>
+                <TypeTitle>
+                  {findItems({ items: gameType, target: post.matchType, unknownMsg: "알 수 없는 타입" })}
+                  {FAST_CH.includes(post.channelName) &&
+                    <Speed>빠름</Speed>
+                  }
+                  {FASTEST_CH.includes(post.channelName) &&
+                    <Speed style={{ backgroundColor: '#E15F93' }}>매우 빠름</Speed>
+                  }
+                  {INF_CH.includes(post.channelName) &&
+                    <Speed style={{ backgroundColor: '#9644C6' }}>무한</Speed>
+                  }
+                  {ITEM_FASTEST_CH.includes(post.channelName) &&
+                    <Speed style={{ backgroundColor: '#C83158' }}>가장 빠름</Speed>
+                  }
+                  {ITEM_FAST_CH.includes(post.channelName) &&
+                    <Speed style={{ backgroundColor: '#3EB5E8' }}>빠름</Speed>
+                  }
+                </TypeTitle>
+                <SubTitle>
+                  {findItems({ items: track, target: post.trackId, unknownMsg: "알 수 없는 트랙" })}
+                </SubTitle>
+                <TimeTitle><span style={{ fontWeight: '700', color: '#1B4C7C' }}>주행시간 | </span>{makeElapsedMin(post.player.matchTime)}분 {makeTimeSec(post.player.matchTime, makeElapsedMin(post.player.matchTime))}초 {makeTimeMSec(post.player.matchTime, makeElapsedMin(post.player.matchTime))}</TimeTitle>
+              </MatchInfo>
+              {(post.player.matchRank === '1') &&
+                <Ranks><span style={{ fontSize: '35px', fontWeight: '700', color: '#FFE73C' }}>{post.player.matchRank}</span>/
           <span style={{ fontSize: '20px' }}>{post.playerCount}</span>
-              </Ranks>}
-            {(post.player.matchRank !== '99' && post.player.matchRank !== '' && post.player.matchRank !== '1') &&
-              <Ranks><span style={{ fontSize: '35px', fontWeight: '700' }}>{post.player.matchRank}</span>/
+                </Ranks>}
+              {(post.player.matchRank !== '99' && post.player.matchRank !== '' && post.player.matchRank !== '1') &&
+                <Ranks><span style={{ fontSize: '35px', fontWeight: '700' }}>{post.player.matchRank}</span>/
           <span style={{ fontSize: '20px' }}>{post.playerCount}</span>
-              </Ranks>}
-            {(post.player.matchRank === '99' || post.player.matchRank === '') &&
-              <Ranks style={{ backgroundColor: '#C4CAD4' }}><span style={{ fontStyle: 'italic', fontWeight: '500' }}>리타이어</span>
-              </Ranks>
-            }
-          </Card>
-        </Slide>
+                </Ranks>}
+              {(post.player.matchRank === '99' || post.player.matchRank === '') &&
+                <Ranks style={{ backgroundColor: '#C4CAD4' }}><span style={{ fontStyle: 'italic', fontWeight: '500' }}>리타이어</span>
+                </Ranks>
+              }
+            </Card>
+          </Slide>
         </div>
       ))}
     </>

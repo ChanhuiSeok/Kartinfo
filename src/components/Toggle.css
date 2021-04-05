@@ -30,7 +30,7 @@
 .button
 {
     position: relative;
-    width: 114px;
+    width: 140px;
     height: 36px;
     margin: -20px auto 0 auto;
     overflow: hidden;
@@ -41,7 +41,7 @@
 { 
   .button {
     position: relative;
-    width: 114px;
+    width: 134px;
     height: 36px;
     margin: -20px auto 0 auto;
     overflow: hidden;
@@ -91,10 +91,10 @@
     position: absolute;
     top: 4px;
     left: 4px;
-    width: 60px;
+    width: 80px;
     height: 12px;
     color: #fff;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: bold;
     text-align: center;
     line-height: 1;
@@ -107,7 +107,7 @@
 
 #button-16 .checkbox:active + .knobs:before
 {
-    width: 46px;
+    width: 66px;
 }
 
 #button-16 .checkbox:checked:active + .knobs:before
@@ -118,7 +118,7 @@
 #button-16 .checkbox:checked + .knobs:before
 {
     content: '아이템전';
-    left: 42px;
+    left: 45px;
     background-color: #7e73dd;
 }
 

@@ -169,7 +169,6 @@ const GET_USRINFO = gql`
 `;
 let { usrId } = "";
 
-
 export default () => {
 
   const { usrName } = useParams();
@@ -190,9 +189,7 @@ export default () => {
         <ResultImg src={"image/result_title.png"}></ResultImg>
       </Bounce>
       <Fade left>
-
         <Subtitle>
-
           <Play volume={0.06} loop={true} howl={howl} pause={!play} />
           <AudioButton onClick={() => setPlay(!play)}>
             {play ? <FontAwesomeIcon icon={faVolumeMute} /> : <FontAwesomeIcon icon={faVolumeUp} />}
@@ -205,9 +202,6 @@ export default () => {
           </Link>
 
         </Subtitle>
-
-
-
       </Fade>
 
       <Container>

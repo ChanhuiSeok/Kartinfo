@@ -171,13 +171,9 @@ export default function App() {
   return(
     <>
     <Bounce top>
-      <Zoom top>
-      <Bazzi src={"image/cha2.png"}></Bazzi>
-      </Zoom>
+      <Zoom top><Bazzi src={"image/cha2.png"}></Bazzi></Zoom>
       <Dao src={"image/cha1.png"}></Dao>
-      <Zoom top>
-      <Uni src={"image/cha3.png"}></Uni>
-      </Zoom>
+      <Zoom top><Uni src={"image/cha3.png"}></Uni></Zoom>
       <Dizni src={"image/cha4.png"}></Dizni>
       <Etti src={"image/cha5.png"}></Etti>
       <Marid src={"image/cha6.png"}></Marid>
