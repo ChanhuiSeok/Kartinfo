@@ -157,8 +157,8 @@ const Nickname = styled.p`
 `;
 
 const InfoDiv = styled.div`
-  width:64%;
-  float:left;
+  width:65%;
+  float:right;
 `;
 
 const RankInfo = styled.div`

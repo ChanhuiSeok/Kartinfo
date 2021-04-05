@@ -25,6 +25,7 @@
     "react": "^16.13.1",
     "react-audio-player": "^0.14.0",
     "react-dom": "^16.13.1",
+    "react-favicon": "^0.0.18",
     "react-js-pagination": "^3.0.3",
     "react-paginate": "^6.5.0",
     "react-reveal": "^1.2.2",
