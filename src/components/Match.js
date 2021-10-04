@@ -259,7 +259,7 @@ export default ({ posts, loading }) => {
         <>
           <Slide left>
             <div style={{ textAlign: 'center' }}>
-              <img src={'image/unknownRecord.png'} alt=""></img>
+              <img style={{width: '85%'}} src={'image/unknownRecord.png'} alt=""></img>
             </div>
           </Slide>
         </>

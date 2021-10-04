@@ -52,6 +52,8 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
     pageNumbers.push(i);
   }
   return (
+    <>
+    {totalPosts !== 0 && 
     <div style={{ textAlign: 'center', marginBottom: '30px' }}>
       <nav style={{ display: 'inline-block' }}>
         <PageUl className="pagination">
@@ -65,6 +67,8 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
         </PageUl>
       </nav>
     </div>
+  }
+  </>
   );
 };
 
