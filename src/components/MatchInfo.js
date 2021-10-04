@@ -1,16 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
 import domtoimage from 'dom-to-image'
-import { saveAs } from 'file-saver'
 import { speed, item } from "../metadata/trackType"
 import Match from "../components/Match";
 import Pagination from "../components/Pagination";
 import { useState, useRef, useEffect } from 'react';
 import ToggleButton from '../components/ToggleButton'
-import Tada from 'react-reveal/Tada';
 import Zoom from 'react-reveal/Zoom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrophy, faMedal, faTachometerAlt, faGift, faDownload } from '@fortawesome/free-solid-svg-icons'
