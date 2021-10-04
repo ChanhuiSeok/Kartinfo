@@ -11,6 +11,7 @@ import ToggleButton from '../components/ToggleButton'
 import Zoom from 'react-reveal/Zoom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrophy, faMedal, faTachometerAlt, faGift, faDownload } from '@fortawesome/free-solid-svg-icons'
+import { saveAs } from 'file-saver'
 
 /* 받아온 usrId 값을 가지고 matches 뮤테이션을 실행하여 결과를 그리는 컴포넌트 */
 /* 게임 타입별 id값 딕셔너리 저장 */
