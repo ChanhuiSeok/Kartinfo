@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import {
   FASTEST_CH,
   FAST_CH,
@@ -12,7 +12,9 @@ import gameType from "../jsonData/gameType.json";
 import track from "../jsonData/track.json";
 import kart from "../jsonData/kart.json";
 import character from "../jsonData/character.json";
-import moment from "moment";
+import dayjs from "dayjs";
+import { MatchDetail } from "./model";
+import { findItems, makeElapsedMin, makeTimeMSec, makeTimeSec } from "./util";
 
 const Card = styled.div`
   width: 1000px;
@@ -216,28 +218,14 @@ const StyledSpinner = styled.svg`
   }
 `;
 
-function findItems({ items, target, unknownMsg }) {
-  for (let i in items) {
-    if (items[i].id === target) return items[i].name;
-  }
-  return unknownMsg;
-}
-function makeElapsedMin(time) {
-  const elapsedSec = parseInt(time / 1000);
-  const elapsedMin = parseInt(elapsedSec / 60);
-  const time_Min = elapsedMin;
-  return time_Min;
-}
-function makeTimeSec(time, elapsedMin) {
-  const result = parseInt(time / 1000) - elapsedMin * 60;
-  return result;
-}
-function makeTimeMSec(time, elapsedMin) {
-  const result = (time - elapsedMin * 60 * 1000) % 1000;
-  return result;
+interface Props {
+  posts: MatchDetail[];
+  loading: boolean;
 }
 
-export default ({ posts, loading }) => {
+const Match: FunctionComponent<Props> = (props) => {
+  const { posts, loading } = props;
+
   if (loading) {
     return (
       <div
@@ -282,51 +270,39 @@ export default ({ posts, loading }) => {
         <div key={post.matchId}>
           <Slide left>
             <CardTitle>
-              {moment(post.startTime).format("YYYY-MM-DD")} /{" "}
+              {dayjs(post.startTime).format("YYYY-MM-DD")} /{" "}
               <span style={{ color: "#FCD968" }}>
-                {findItems({
-                  items: character,
-                  target: post.character,
-                  unknownMsg: "알 수 없는 캐릭터",
-                })}
+                {findItems(character, post.character, "알 수 없는 캐릭터")}
               </span>{" "}
               착용 /
               <span style={{ color: "#61E9B4" }}>
                 {" "}
-                {findItems({
-                  items: kart,
-                  target: post.player.kart,
-                  unknownMsg: "알 수 없는 카트",
-                })}{" "}
+                {findItems(kart, post.player.kart, "알 수 없는 카트")}{" "}
               </span>
               탑승
             </CardTitle>
             <Card>
               <CharacterImg
-                onError={(e) => {
+                onError={(e: any) => {
                   e.target.src = "image/unknownChar.png";
                 }}
                 src={"image/character/" + post.character + ".png"}
               ></CharacterImg>
               <KartImg
-                onError={(e) => {
+                onError={(e: any) => {
                   e.target.src = "image/unknownKart.png";
                 }}
                 src={"image/kart/" + post.player.kart + ".png"}
               ></KartImg>
               <TrackImg
-                onError={(e) => {
+                onError={(e: any) => {
                   e.target.src = "image/blankTrack.png";
                 }}
                 src={"image/track/" + post.trackId + ".png"}
               ></TrackImg>
               <MatchInfo>
                 <TypeTitle>
-                  {findItems({
-                    items: gameType,
-                    target: post.matchType,
-                    unknownMsg: "알 수 없는 타입",
-                  })}
+                  {findItems(gameType, post.matchType, "알 수 없는 타입")}
                   {FAST_CH.includes(post.channelName) && <Speed>빠름</Speed>}
                   {FASTEST_CH.includes(post.channelName) && (
                     <Speed style={{ backgroundColor: "#E15F93" }}>
@@ -346,14 +322,10 @@ export default ({ posts, loading }) => {
                   )}
                 </TypeTitle>
                 <SubTitle>
-                  {findItems({
-                    items: track,
-                    target: post.trackId,
-                    unknownMsg: "알 수 없는 트랙",
-                  })}
+                  {findItems(track, post.trackId, "알 수 없는 트랙")}
                 </SubTitle>
                 <TimeTitle>
-                  <span style={{ fontWeight: "700", color: "#1B4C7C" }}>
+                  <span style={{ fontWeight: "bold", color: "#1B4C7C" }}>
                     주행시간 |{" "}
                   </span>
                   {makeElapsedMin(post.player.matchTime)}분{" "}
@@ -373,7 +345,7 @@ export default ({ posts, loading }) => {
                   <span
                     style={{
                       fontSize: "35px",
-                      fontWeight: "700",
+                      fontWeight: "bold",
                       color: "#FFE73C",
                     }}
                   >
@@ -386,7 +358,7 @@ export default ({ posts, loading }) => {
                 post.player.matchRank !== "" &&
                 post.player.matchRank !== "1" && (
                   <Ranks>
-                    <span style={{ fontSize: "35px", fontWeight: "700" }}>
+                    <span style={{ fontSize: "35px", fontWeight: "bold" }}>
                       {post.player.matchRank}
                     </span>
                     /
@@ -396,7 +368,7 @@ export default ({ posts, loading }) => {
               {(post.player.matchRank === "99" ||
                 post.player.matchRank === "") && (
                 <Ranks style={{ backgroundColor: "#C4CAD4" }}>
-                  <span style={{ fontStyle: "italic", fontWeight: "500" }}>
+                  <span style={{ fontStyle: "italic", fontWeight: "normal" }}>
                     리타이어
                   </span>
                 </Ranks>
@@ -408,3 +380,5 @@ export default ({ posts, loading }) => {
     </>
   );
 };
+
+export default Match;
