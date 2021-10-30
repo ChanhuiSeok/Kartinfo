@@ -1,4 +1,4 @@
-import { ChannelType } from "../metadata/channelType";
+import { ChannelType } from "../model";
 
 interface Player {
   kart: string;

@@ -6,9 +6,10 @@ import track from "../jsonData/track.json";
 import kart from "../jsonData/kart.json";
 import character from "../jsonData/character.json";
 import dayjs from "dayjs";
-import { MatchDetail } from "./model";
+import { MatchDetail } from "../model";
 import { findItems, makeElapsedMin, makeTimeMSec, makeTimeSec } from "./util";
 import ChannelTag from "./ChannelTag";
+import RankInfo from "./RankInfo";
 
 const Card = styled.div`
   width: 1000px;
@@ -318,39 +319,11 @@ const Match: FunctionComponent<Props> = (props) => {
                   )}
                 </TimeTitle>
               </MatchInfo>
-              {post.player.matchRank === "1" && (
-                <Ranks>
-                  <span
-                    style={{
-                      fontSize: "35px",
-                      fontWeight: "bold",
-                      color: "#FFE73C",
-                    }}
-                  >
-                    {post.player.matchRank}
-                  </span>
-                  /<span style={{ fontSize: "20px" }}>{post.playerCount}</span>
-                </Ranks>
-              )}
-              {post.player.matchRank !== "99" &&
-                post.player.matchRank !== "" &&
-                post.player.matchRank !== "1" && (
-                  <Ranks>
-                    <span style={{ fontSize: "35px", fontWeight: "bold" }}>
-                      {post.player.matchRank}
-                    </span>
-                    /
-                    <span style={{ fontSize: "20px" }}>{post.playerCount}</span>
-                  </Ranks>
-                )}
-              {(post.player.matchRank === "99" ||
-                post.player.matchRank === "") && (
-                <Ranks style={{ backgroundColor: "#C4CAD4" }}>
-                  <span style={{ fontStyle: "italic", fontWeight: "normal" }}>
-                    리타이어
-                  </span>
-                </Ranks>
-              )}
+
+              <RankInfo
+                matchRank={post.player.matchRank}
+                playerCount={post.playerCount}
+              ></RankInfo>
             </Card>
           </Slide>
         </div>
