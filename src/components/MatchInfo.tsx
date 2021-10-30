@@ -1,10 +1,7 @@
 import React, { FunctionComponent } from "react";
+import { useRef } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import domtoimage from "dom-to-image";
-import Match from "../components/Match";
-import Pagination from "../components/Pagination";
-import { useRef } from "react";
-import ToggleButton from "../components/ToggleButton";
 import Zoom from "react-reveal/Zoom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -14,6 +11,9 @@ import {
   faGift,
   faDownload,
 } from "@fortawesome/free-solid-svg-icons";
+import Match from "../components/Match";
+import Pagination from "../components/Pagination";
+import ToggleButton from "../components/ToggleButton";
 import { Matches } from "./model";
 import usePagination from "../hooks/usePagination";
 import * as styled from "../styles/styled";
