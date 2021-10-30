@@ -90,15 +90,17 @@ const MatchList = styled.div`
 `;
 
 const TypeTitle = styled.div`
-  line-height: 50px;
+  display: flex;
+  align-items: center;
   font-size: 27px;
   font-weight: 700;
+  margin: 12px 0 12px;
   @media (max-width: 1120px) {
-    line-height: 35px;
+    margin: 8px 0 5px;
     font-size: 23px;
   }
   @media (max-width: 700px) {
-    line-height: 20px;
+    margin: 0 0 2px;
     font-size: 16px;
   }
 `;
@@ -219,7 +221,7 @@ const Match: FunctionComponent<Props> = (props) => {
               ></TrackImg>
               <MatchList>
                 <TypeTitle>
-                  {findItems(gameType, post.matchType, "알 수 없는 타입")}
+                  <span>{findItems(gameType, post.matchType, "알 수 없는 타입")}</span>
                   <ChannelTag channelName={post.channelName} />
                 </TypeTitle>
                 <SubTitle>{findItems(track, post.trackId, "알 수 없는 트랙")}</SubTitle>
