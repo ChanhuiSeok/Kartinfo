@@ -46,7 +46,6 @@ const MatchInfo: FunctionComponent<Props> = ({ id, nickname }) => {
 
   const personInfo = useRef(null);
 
-  console.log(posts);
   // 유저 카드 저장
   const onClick = function () {
     domtoimage.toPng(personInfo.current).then(function (blob) {
