@@ -10,6 +10,7 @@ import { MatchDetail } from "../model";
 import { findItems, makeElapsedMin, makeTimeMSec, makeTimeSec } from "./util";
 import ChannelTag from "./ChannelTag";
 import RankInfo from "./RankInfo";
+import TimeInfo from "./TimeInfo";
 
 const Card = styled.div`
   width: 1000px;
@@ -260,23 +261,8 @@ const Match: FunctionComponent<Props> = (props) => {
                 <SubTitle>
                   {findItems(track, post.trackId, "알 수 없는 트랙")}
                 </SubTitle>
-                <TimeTitle>
-                  <span style={{ fontWeight: "bold", color: "#1B4C7C" }}>
-                    주행시간 |{" "}
-                  </span>
-                  {makeElapsedMin(post.player.matchTime)}분{" "}
-                  {makeTimeSec(
-                    post.player.matchTime,
-                    makeElapsedMin(post.player.matchTime)
-                  )}
-                  초{" "}
-                  {makeTimeMSec(
-                    post.player.matchTime,
-                    makeElapsedMin(post.player.matchTime)
-                  )}
-                </TimeTitle>
+                <TimeInfo matchTime={post.player.matchTime} />
               </MatchList>
-
               <RankInfo
                 matchRank={post.player.matchRank}
                 playerCount={post.playerCount}
