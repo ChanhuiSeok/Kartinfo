@@ -46,10 +46,11 @@ const MatchInfo: FunctionComponent<Props> = ({ id, nickname }) => {
 
   const personInfo = useRef(null);
 
+  console.log(posts);
   // 유저 카드 저장
   const onClick = function () {
     domtoimage.toPng(personInfo.current).then(function (blob) {
-      window.saveAs(blob, "user-card.png");
+      saveAs(blob, "user-card.png");
     });
   };
 
@@ -72,7 +73,7 @@ const MatchInfo: FunctionComponent<Props> = ({ id, nickname }) => {
         </div>
       )}
       <styled.Container>
-        {data && posts && (
+        {posts && (
           <>
             <Zoom left>
               <styled.DownloadDiv>
@@ -88,7 +89,7 @@ const MatchInfo: FunctionComponent<Props> = ({ id, nickname }) => {
                       onError={(e) => {
                         e.currentTarget.src = "image/unknownChar.png";
                       }}
-                      src={"image/character/" + data.matches[0].matches[0].character + ".png"}
+                      src={"image/character/" + posts.matches[0].matches[0].character + ".png"}
                     ></styled.CharacterImg>
                     <styled.NickNameDiv>
                       <styled.Nickname>{nickname}</styled.Nickname>
