@@ -37,9 +37,7 @@ const TimeInfo: FunctionComponent<Props> = ({ matchTime }) => {
 
   return (
     <TimeTitle>
-      <span
-        style={{ fontWeight: "bold", color: "#1B4C7C" }}
-      >{`주행시간 | `}</span>
+      <span style={{ fontWeight: "bold", color: "#1B4C7C" }}>{`주행시간 | `}</span>
       {`${MINUTES}분 ${SECONDS}초 ${MSECONDS}`}
     </TimeTitle>
   );

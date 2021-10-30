@@ -63,8 +63,7 @@ const RankInfo: FunctionComponent<Props> = ({ matchRank, playerCount }) => {
       )}
       {matchRank !== "99" && matchRank !== "" && (
         <Rank>
-          <span style={styles}>{matchRank}</span>/
-          <span style={{ fontSize: "20px" }}>{playerCount}</span>
+          <span style={styles}>{matchRank}</span>/<span style={{ fontSize: "20px" }}>{playerCount}</span>
         </Rank>
       )}
     </>

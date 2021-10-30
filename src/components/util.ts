@@ -9,18 +9,11 @@ import {
   ChannelType,
 } from "../metadata/channelType";
 
-function contains<T extends string>(
-  list: ReadonlyArray<T>,
-  value: string
-): value is T {
+function contains<T extends string>(list: ReadonlyArray<T>, value: string): value is T {
   return list.some((item) => item === value);
 }
 
-export function findItems(
-  items: Array<any>,
-  target: string,
-  unknownMsg: string
-) {
+export function findItems(items: Array<any>, target: string, unknownMsg: string) {
   for (let i in items) {
     if (items[i].id === target) return items[i].name;
   }

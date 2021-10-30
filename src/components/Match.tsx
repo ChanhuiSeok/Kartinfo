@@ -191,14 +191,7 @@ const Match: FunctionComponent<Props> = (props) => {
         }}
       >
         <StyledSpinner viewBox="0 0 50 50">
-          <circle
-            className="path"
-            cx="25"
-            cy="25"
-            r="20"
-            fill="none"
-            strokeWidth="4"
-          />{" "}
+          <circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="4" />{" "}
         </StyledSpinner>
         <p>불러오는 중...</p>
       </div>
@@ -210,11 +203,7 @@ const Match: FunctionComponent<Props> = (props) => {
         <>
           <Slide left>
             <div style={{ textAlign: "center" }}>
-              <img
-                style={{ width: "85%" }}
-                src={"image/unknownRecord.png"}
-                alt=""
-              ></img>
+              <img style={{ width: "85%" }} src={"image/unknownRecord.png"} alt=""></img>
             </div>
           </Slide>
         </>
@@ -223,14 +212,13 @@ const Match: FunctionComponent<Props> = (props) => {
         <div key={post.matchId}>
           <Slide left>
             <CardTitle>
-              {dayjs(post.startTime).format("YYYY-MM-DD")} /{" "}
+              {`${dayjs(post.startTime).format("YYYY-MM-DD")} / `}
               <span style={{ color: "#FCD968" }}>
-                {findItems(character, post.character, "알 수 없는 캐릭터")}
-              </span>{" "}
-              착용 /
+                {`${findItems(character, post.character, "알 수 없는 캐릭터")} `}
+              </span>
+              {`착용 / `}
               <span style={{ color: "#61E9B4" }}>
-                {" "}
-                {findItems(kart, post.player.kart, "알 수 없는 카트")}{" "}
+                {`${findItems(kart, post.player.kart, "알 수 없는 카트")} `}
               </span>
               탑승
             </CardTitle>
@@ -258,15 +246,10 @@ const Match: FunctionComponent<Props> = (props) => {
                   {findItems(gameType, post.matchType, "알 수 없는 타입")}
                   <ChannelTag channelName={post.channelName} />
                 </TypeTitle>
-                <SubTitle>
-                  {findItems(track, post.trackId, "알 수 없는 트랙")}
-                </SubTitle>
+                <SubTitle>{findItems(track, post.trackId, "알 수 없는 트랙")}</SubTitle>
                 <TimeInfo matchTime={post.player.matchTime} />
               </MatchList>
-              <RankInfo
-                matchRank={post.player.matchRank}
-                playerCount={post.playerCount}
-              ></RankInfo>
+              <RankInfo matchRank={post.player.matchRank} playerCount={post.playerCount}></RankInfo>
             </Card>
           </Slide>
         </div>
