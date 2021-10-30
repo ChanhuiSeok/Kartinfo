@@ -15,7 +15,7 @@ import character from "../jsonData/character.json";
 import dayjs from "dayjs";
 import { MatchDetail } from "./model";
 import { findItems, makeElapsedMin, makeTimeMSec, makeTimeSec } from "./util";
-import ChannelTag from "./channelTag";
+import ChannelTag from "./ChannelTag";
 
 const Card = styled.div`
   width: 1000px;
