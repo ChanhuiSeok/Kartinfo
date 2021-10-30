@@ -1,4 +1,4 @@
-import React, { useMemo, FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 import { getPageNums } from "./util";
 
