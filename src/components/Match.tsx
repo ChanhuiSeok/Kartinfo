@@ -15,6 +15,7 @@ import character from "../jsonData/character.json";
 import dayjs from "dayjs";
 import { MatchDetail } from "./model";
 import { findItems, makeElapsedMin, makeTimeMSec, makeTimeSec } from "./util";
+import ChannelTag from "./channelTag";
 
 const Card = styled.div`
   width: 1000px;
@@ -303,23 +304,7 @@ const Match: FunctionComponent<Props> = (props) => {
               <MatchInfo>
                 <TypeTitle>
                   {findItems(gameType, post.matchType, "알 수 없는 타입")}
-                  {FAST_CH.includes(post.channelName) && <Speed>빠름</Speed>}
-                  {FASTEST_CH.includes(post.channelName) && (
-                    <Speed style={{ backgroundColor: "#E15F93" }}>
-                      매우 빠름
-                    </Speed>
-                  )}
-                  {INF_CH.includes(post.channelName) && (
-                    <Speed style={{ backgroundColor: "#9644C6" }}>무한</Speed>
-                  )}
-                  {ITEM_FASTEST_CH.includes(post.channelName) && (
-                    <Speed style={{ backgroundColor: "#C83158" }}>
-                      가장 빠름
-                    </Speed>
-                  )}
-                  {ITEM_FAST_CH.includes(post.channelName) && (
-                    <Speed style={{ backgroundColor: "#3EB5E8" }}>빠름</Speed>
-                  )}
+                  <ChannelTag channelName={post.channelName} />
                 </TypeTitle>
                 <SubTitle>
                   {findItems(track, post.trackId, "알 수 없는 트랙")}

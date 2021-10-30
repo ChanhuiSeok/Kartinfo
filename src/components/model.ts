@@ -1,3 +1,5 @@
+import { ChannelType } from "../metadata/channelType";
+
 interface Player {
   kart: string;
   license: string;
@@ -23,7 +25,7 @@ export interface MatchDetail {
   startTime: string;
   endTime: string;
   playTime: number;
-  channelName: string;
+  channelName: ChannelType;
   trackId: string;
   playerCount: number;
   player: Player;
