@@ -21,8 +21,6 @@ import { GET_MATCHES } from "../const/graphql";
 import { saveAs } from "file-saver";
 
 /* 받아온 usrId 값을 가지고 matches 뮤테이션을 실행하여 결과를 그리는 컴포넌트 */
-/* 게임 타입별 id값 딕셔너리 저장 */
-
 interface Props {
   id: string;
   nickname: string;
