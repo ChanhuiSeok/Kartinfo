@@ -1,11 +1,4 @@
 import React, { FunctionComponent } from "react";
-import {
-  FASTEST_CH,
-  FAST_CH,
-  INF_CH,
-  ITEM_FASTEST_CH,
-  ITEM_FAST_CH,
-} from "../metadata/channelType";
 import styled from "styled-components";
 import Slide from "react-reveal/Slide";
 import gameType from "../jsonData/gameType.json";
