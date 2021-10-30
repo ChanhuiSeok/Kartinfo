@@ -81,7 +81,7 @@ const KartImg = styled.img`
   }
 `;
 
-const MatchInfo = styled.div`
+const MatchList = styled.div`
   position: relative;
   display: inline-block;
   margin-left: 15px;
@@ -99,21 +99,6 @@ const TypeTitle = styled.div`
   @media (max-width: 700px) {
     line-height: 20px;
     font-size: 16px;
-  }
-`;
-
-const Speed = styled.span`
-  border-radius: 5px;
-  padding: 5px;
-  color: white;
-  font-weight: 500;
-  margin: 5px;
-  font-size: 14px;
-  background-color: #1789d3;
-  @media (max-width: 700px) {
-    font-size: 11px;
-    margin: 3px;
-    padding: 3px;
   }
 `;
 
@@ -151,34 +136,6 @@ const TimeTitle = styled.div`
   @media (max-width: 500px) {
     font-size: 12px;
     margin-top: 0.8em;
-  }
-`;
-
-const Ranks = styled.div`
-  position: relative;
-  height: 130px;
-  float: right;
-  margin-right: -5px;
-  border-radius: 7px;
-  width: 95px;
-  text-align: center;
-  background-color: #2752a2;
-  padding: 7px;
-  color: white;
-  line-height: 110px;
-
-  @media (max-width: 1120px) {
-    width: 90px;
-    height: 100px;
-    line-height: 80px;
-  }
-
-  @media (max-width: 700px) {
-    width: 53px;
-    height: 45px;
-    line-height: 40px;
-    margin-right: -13px;
-    font-size: 10px;
   }
 `;
 
@@ -295,7 +252,7 @@ const Match: FunctionComponent<Props> = (props) => {
                 }}
                 src={"image/track/" + post.trackId + ".png"}
               ></TrackImg>
-              <MatchInfo>
+              <MatchList>
                 <TypeTitle>
                   {findItems(gameType, post.matchType, "알 수 없는 타입")}
                   <ChannelTag channelName={post.channelName} />
@@ -318,7 +275,7 @@ const Match: FunctionComponent<Props> = (props) => {
                     makeElapsedMin(post.player.matchTime)
                   )}
                 </TimeTitle>
-              </MatchInfo>
+              </MatchList>
 
               <RankInfo
                 matchRank={post.player.matchRank}
