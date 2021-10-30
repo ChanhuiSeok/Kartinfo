@@ -30,3 +30,12 @@ export interface MatchDetail {
   playerCount: number;
   player: Player;
 }
+
+export interface Matches {
+  matches: MatchInfo[];
+}
+
+export interface MatchInfo {
+  matchType: string;
+  matches: MatchDetail[];
+}

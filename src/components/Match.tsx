@@ -7,7 +7,7 @@ import kart from "../jsonData/kart.json";
 import character from "../jsonData/character.json";
 import dayjs from "dayjs";
 import { MatchDetail } from "../model";
-import { findItems, makeElapsedMin, makeTimeMSec, makeTimeSec } from "./util";
+import { findItems } from "./util";
 import ChannelTag from "./ChannelTag";
 import RankInfo from "./RankInfo";
 import TimeInfo from "./TimeInfo";
@@ -113,30 +113,6 @@ const SubTitle = styled.div`
   }
   @media (max-width: 700px) {
     font-size: 13px;
-  }
-`;
-
-const TimeTitle = styled.div`
-  vertical-align: bottom;
-  font-weight: 300;
-  font-size: 15px;
-  margin-top: 4em;
-  color: #636d78;
-  @media (max-width: 1120px) {
-    font-size: 14px;
-    margin-top: 4em;
-  }
-  @media (max-width: 950px) {
-    font-size: 13px;
-    margin-top: 3em;
-  }
-  @media (max-width: 700px) {
-    font-size: 12px;
-    margin-top: 1.5em;
-  }
-  @media (max-width: 500px) {
-    font-size: 12px;
-    margin-top: 0.8em;
   }
 `;
 

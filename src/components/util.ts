@@ -91,3 +91,11 @@ export function getChannelName(channelName: ChannelType) {
     color: "",
   };
 }
+
+export function getPageNums(totalPosts: number, postsPerPage: number) {
+  const pageNumbers: number[] = [];
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+  return pageNumbers;
+}
