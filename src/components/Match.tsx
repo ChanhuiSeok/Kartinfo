@@ -60,14 +60,14 @@ const CharacterImg = styled.img`
   position: relative;
   width: 20%;
   z-index: 1;
-  margin-left: -35px;
+  margin-left: -40px;
   @media (max-width: 700px) {
     margin-left: -30px;
   }
 `;
 
 const TrackImg = styled.img`
-  margin-left:5px;
+  margin-left:16px;
   width:22%;
   onerror='this.src="/unknownTrack.png"';
   @media (max-width: 700px) {
@@ -94,6 +94,7 @@ const MatchList = styled.div`
   margin-left: 15px;
   vertical-align: top;
   @media (max-width: 700px) {
+    margin-top: -5px;
     margin-left: 9px;
   }
 `;
@@ -103,9 +104,9 @@ const TypeTitle = styled.div`
   align-items: center;
   font-size: 27px;
   font-weight: 700;
-  margin: 12px 0 12px;
+  margin: 8px 0 12px;
   @media (max-width: 1120px) {
-    margin: 8px 0 5px;
+    margin: 5px 0 5px;
     font-size: 23px;
   }
   @media (max-width: 700px) {
