@@ -8,13 +8,14 @@ const Channel = styled.span`
   border-radius: 5px;
   padding: 6px;
   color: white;
-  font-weight: 500;
+  font-weight: 600;
   margin: 5px;
   font-size: 14px;
   @media (max-width: 700px) {
+    font-weight: 500;
     font-size: 11px;
-    margin: 3px;
-    padding: 5px;
+    margin: 2px;
+    padding: 4px;
   }
 `;
 

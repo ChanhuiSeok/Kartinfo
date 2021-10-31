@@ -53,14 +53,14 @@ export function getChannelName(channelName: ChannelType) {
   // 매우 빠름
   if (contains(FASTEST_CH, channelName)) {
     return {
-      name: "매우 빠름",
+      name: "매우빠름",
       color: "#E15F93",
     };
   }
   // 가장 빠름(아이템)
   if (contains(ITEM_FASTEST_CH, channelName)) {
     return {
-      name: "가장 빠름",
+      name: "가장빠름",
       color: "#C83158",
     };
   }

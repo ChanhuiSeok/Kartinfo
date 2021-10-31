@@ -61,11 +61,14 @@ const CharacterImg = styled.img`
   width: 20%;
   z-index: 1;
   margin-left: -35px;
+  @media (max-width: 700px) {
+    margin-left: -30px;
+  }
 `;
 
 const TrackImg = styled.img`
   margin-left:5px;
-  width:20%;
+  width:22%;
   onerror='this.src="/unknownTrack.png"';
 `;
 
@@ -87,6 +90,9 @@ const MatchList = styled.div`
   display: inline-block;
   margin-left: 15px;
   vertical-align: top;
+  @media (max-width: 700px) {
+    margin-left: 12px;
+  }
 `;
 
 const TypeTitle = styled.div`
@@ -101,12 +107,14 @@ const TypeTitle = styled.div`
   }
   @media (max-width: 700px) {
     margin: 0 0 2px;
-    font-size: 16px;
+    font-size: 15px;
   }
 `;
 
 const SubTitle = styled.div`
   line-height: 16px;
+  letter-spacing: -0.5px;
+  word-spacing: -1px;
   font-size: 18px;
   font-weight: 600;
   color: #1b4c7c;
