@@ -92,7 +92,7 @@ const CharacterImg = styled.img`
     margin-left: 7px;
   }
   @media (max-width: 700px) {
-    margin-left: 5px;
+    margin-left: 3px;
   }
 `;
 
@@ -103,7 +103,7 @@ const Nickname = styled.p`
   letter-spacing: -1px;
   @media (max-width: 700px) {
     word-break: break-word;
-    font-size: 7px;
+    font-size: 9px;
   }
 `;
 

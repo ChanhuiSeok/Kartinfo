@@ -25,7 +25,7 @@ const Rank = styled.div`
   justify-content: center;
   padding: 7px;
   color: white;
-
+  font-weight: 700;
   @media (max-width: 1120px) {
     width: 90px;
     height: 100px;
@@ -35,16 +35,17 @@ const Rank = styled.div`
     width: 53px;
     height: 53px;
     margin-right: -13px;
-    font-size: 10px;
+    font-size: 13px;
   }
 `;
 
 const WinLoseInfo = styled.p`
   font-size: 15px;
   margin-top: 3px;
+  font-weight: 700;
   @media (max-width: 700px) {
     margin-top: 1px;
-    font-size: 8px;
+    font-size: 9px;
   }
 `;
 
