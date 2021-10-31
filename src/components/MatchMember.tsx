@@ -19,7 +19,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: row;
   width: 1000px;
-  border-radius: 7px;
+  border-radius: 0 0 7px 7px;
   margin-bottom: 40px;
   background-color: #ffffff;
   padding: 25px;
@@ -171,7 +171,9 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
             ))}
           </Card>
         )}
-        {!loading && data.matchIndiMember === null && <Card>{`데이터가 없습니다.`}</Card>}
+        {!loading && data.matchIndiMember === null && (
+          <Card style={{ color: "gray", fontSize: "12px" }}>{`상세 데이터가 없습니다`}</Card>
+        )}
         {error && <h1>데이터를 불러올 수 없습니다.</h1>}
       </>
     );
@@ -216,7 +218,9 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
             ))}
           </Card>
         )}
-        {!loading && data.matchTeamMember === null && <Card>{`데이터가 없습니다.`}</Card>}
+        {!loading && data.matchTeamMember === null && (
+          <Card style={{ color: "gray", fontSize: "12px" }}>{`상세 데이터가 없습니다`}</Card>
+        )}
         {error && <h1>데이터를 불러올 수 없습니다.</h1>}
       </>
     );

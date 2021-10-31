@@ -15,7 +15,7 @@ import MatchMember from "./MatchMember";
 
 const Card = styled.div`
   width: 1000px;
-  border-radius: 7px;
+  border-radius: 7px 7px 0 0;
   margin-bottom: -5px;
   background-color: white;
   float: left;
