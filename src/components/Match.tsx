@@ -239,7 +239,12 @@ const Match: FunctionComponent<Props> = (props) => {
                 <SubTitle>{findItems(track, post.trackId, "알 수 없는 트랙")}</SubTitle>
                 <TimeInfo matchTime={post.player.matchTime} />
               </MatchList>
-              <RankInfo matchRank={post.player.matchRank} playerCount={post.playerCount}></RankInfo>
+              <RankInfo
+                matchRank={post.player.matchRank}
+                playerCount={post.playerCount}
+                matchType={post.matchType}
+                matchWin={post.player.matchWin}
+              ></RankInfo>
             </Card>
           </Slide>
         </div>

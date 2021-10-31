@@ -1,37 +1,38 @@
-const FAST_CH = ["speedIndiFast", "speedTeamFast"] as const;
-const FASTEST_CH = ["speedIndiFastest", "speedTeamFastest"] as const;
-const INF_CH = ["speedTeamInfinit", "speedIndiInfinit"] as const;
-const ITEM_FASTEST_CH = [
-  "itemNewItemTeamFastest2Enchant",
-  "itemNewItemIndiFastest2Enchant",
+export const SpeedFastChannel = ["speedIndiFast", "speedTeamFast"] as const;
+export const SpeedFastestChannel = ["speedIndiFastest", "speedTeamFastest"] as const;
+export const InfChannel = [
+  "speedTeamInfinit",
+  "speedIndiInfinit",
+  "itemTeamInfinit",
+  "itemIndiInfinit",
 ] as const;
-const ITEM_FAST_CH = [
+export const ItemFastChannel = [
   "itemNewItemTeamFast2Enchant",
   "itemNewItemIndiFast2Enchant",
+  "itemTeamFast",
+  "itemIndiFast",
 ] as const;
-const COMBINE_CH = [
+export const ItemFastestChannel = [
+  "itemNewItemTeamFastest2Enchant",
+  "itemNewItemIndiFastest2Enchant",
+  "itemTeamFastest",
+  "itemIndiFastest",
+] as const;
+export const CombineChannel = [
   "speedIndiCombine",
   "speedTeamCombine",
   "itemIndiCombine",
   "itemTeamCombine",
 ] as const;
-const BATTLE_CH = ["battle"] as const;
+export const BattleChannel = ["battle"] as const;
+export const TierChannel = ["tierMatching_speedTeam", "tierMatching_itemNewItemTeam"] as const;
 
 export type ChannelType =
-  | typeof FAST_CH[number]
-  | typeof FASTEST_CH[number]
-  | typeof INF_CH[number]
-  | typeof ITEM_FASTEST_CH[number]
-  | typeof ITEM_FAST_CH[number]
-  | typeof COMBINE_CH[number]
-  | typeof BATTLE_CH[number];
-
-export {
-  FAST_CH,
-  FASTEST_CH,
-  INF_CH,
-  ITEM_FASTEST_CH,
-  ITEM_FAST_CH,
-  COMBINE_CH,
-  BATTLE_CH,
-};
+  | typeof SpeedFastChannel[number]
+  | typeof SpeedFastestChannel[number]
+  | typeof InfChannel[number]
+  | typeof ItemFastChannel[number]
+  | typeof ItemFastestChannel[number]
+  | typeof CombineChannel[number]
+  | typeof BattleChannel[number]
+  | typeof TierChannel[number];
