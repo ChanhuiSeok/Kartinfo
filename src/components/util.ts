@@ -21,7 +21,7 @@ export function findItems(items: Array<any>, target: string, unknownMsg?: string
   return unknownMsg;
 }
 
-export function findTeamOrIndi(items: Array<any>, target: string) {
+export function getTeamOrIndi(items: Array<any>, target: string) {
   for (let i in items) {
     if (items[i].id === target && items[i].name.includes("팀")) {
       return "Team";

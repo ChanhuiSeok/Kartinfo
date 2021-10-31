@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 import gameType from "../jsonData/gameType.json";
-import { findTeamOrIndi } from "./util";
+import { getTeamOrIndi } from "./util";
 import { RETIRE, TEAM_WIN, TEAM_LOSE } from "../const/game";
 
 interface Props {
@@ -68,7 +68,7 @@ const RankInfo: FunctionComponent<Props> = ({ matchRank, playerCount, matchType,
     };
   }
 
-  const isTeamType = findTeamOrIndi(gameType, matchType) === "Team";
+  const isTeam = getTeamOrIndi(gameType, matchType) === "Team";
   const teamWinOrLose = matchWin === "1" ? TEAM_WIN : TEAM_LOSE;
   const winOrLoseStyle = matchWin === "1" ? { color: "#FFE73C" } : {};
 
@@ -77,7 +77,7 @@ const RankInfo: FunctionComponent<Props> = ({ matchRank, playerCount, matchType,
       {(matchRank === "99" || matchRank === "") && (
         <Rank style={{ backgroundColor: "#9A9DA3" }}>
           <span style={styles}>{RETIRE}</span>
-          {isTeamType && <WinLoseInfo style={winOrLoseStyle}>{`(${teamWinOrLose})`}</WinLoseInfo>}
+          {isTeam && <WinLoseInfo style={winOrLoseStyle}>{`(${teamWinOrLose})`}</WinLoseInfo>}
         </Rank>
       )}
       {matchRank !== "99" && matchRank !== "" && (
@@ -86,7 +86,7 @@ const RankInfo: FunctionComponent<Props> = ({ matchRank, playerCount, matchType,
             <span style={styles}>{matchRank}</span> /
             <span style={{ fontSize: "18px" }}>{playerCount}</span>
           </div>
-          {isTeamType && <WinLoseInfo style={winOrLoseStyle}>{`(${teamWinOrLose})`}</WinLoseInfo>}
+          {isTeam && <WinLoseInfo style={winOrLoseStyle}>{`(${teamWinOrLose})`}</WinLoseInfo>}
         </Rank>
       )}
     </>

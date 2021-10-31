@@ -15,7 +15,7 @@ import Match from "../components/Match";
 import Pagination from "../components/Pagination";
 import ToggleButton from "../components/ToggleButton";
 import { Matches } from "./model";
-import usePagination from "../hooks/usePagination";
+import { usePagination } from "../hooks";
 import * as styled from "../styles/styled";
 import { GET_MATCHES } from "../const/graphql";
 import { saveAs } from "file-saver";
@@ -143,7 +143,7 @@ const MatchInfo: FunctionComponent<Props> = ({ id, nickname }) => {
                   totalPosts={speedArr.length}
                   paginate={changePage}
                 />
-                <Match posts={getCurrentPosts(speedArr)} loading={loads} />
+                <Match posts={getCurrentPosts(speedArr)} loading={loads} nickname={nickname} />
               </>
             )}
             {checked === 1 && (
@@ -153,7 +153,7 @@ const MatchInfo: FunctionComponent<Props> = ({ id, nickname }) => {
                   totalPosts={itemArr.length}
                   paginate={changePage}
                 />
-                <Match posts={getCurrentPosts(itemArr)} loading={loads} />
+                <Match posts={getCurrentPosts(itemArr)} loading={loads} nickname={nickname} />
               </>
             )}
           </>

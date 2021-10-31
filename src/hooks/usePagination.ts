@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { MatchDetail, Matches } from "../model";
 import { speed, item } from "../metadata/trackType";
 
-function usePagination(data: Matches | undefined, postsPerPage: number) {
+export function usePagination(data: Matches | undefined, postsPerPage: number) {
   const [posts, setPosts] = useState<Matches>();
   const [loads, setLoads] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -95,5 +95,3 @@ function usePagination(data: Matches | undefined, postsPerPage: number) {
     itemArr,
   };
 }
-
-export default usePagination;

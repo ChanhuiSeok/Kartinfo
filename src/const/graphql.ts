@@ -16,15 +16,41 @@ export const GET_MATCHES = gql`
         playerCount
         player {
           kart
-          pet
-          flyingPet
           matchRank
           matchWin
           matchTime
-          matchRetired
           rankinggrade2
         }
       }
+    }
+  }
+`;
+
+export const GET_MATCH_TEAM_MEMBER = gql`
+  query getMatchTeamMember($matchId: String!) {
+    matchTeamMember(matchId: $matchId) {
+      teamId
+      players {
+        accountNo
+        character
+        characterName
+        kart
+        matchRank
+        matchTime
+      }
+    }
+  }
+`;
+
+export const GET_MATCH_INDI_MEMBER = gql`
+  query getMatchIndiMember($matchId: String!) {
+    matchIndiMember(matchId: $matchId) {
+      accountNo
+      character
+      characterName
+      kart
+      matchRank
+      matchTime
     }
   }
 `;

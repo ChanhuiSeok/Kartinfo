@@ -31,6 +31,28 @@ export interface MatchDetail {
   player: Player;
 }
 
+interface DetailedPlayer {
+  accountNo: string;
+  characterName: string;
+  character: string;
+  kart: string;
+  matchRank: string;
+  matchTime: string;
+}
+
+interface Teams {
+  teamId: string;
+  players: DetailedPlayer[];
+}
+
+export interface MatchTeamMeber {
+  matchTeamMember: Teams[];
+}
+
+export interface MatchIndiMember {
+  matchIndiMember: DetailedPlayer[];
+}
+
 export interface Matches {
   matches: MatchInfo[];
 }

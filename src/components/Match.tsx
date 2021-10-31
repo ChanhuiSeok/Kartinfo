@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { useState, FunctionComponent } from "react";
 import styled from "styled-components";
 import Slide from "react-reveal/Slide";
 import gameType from "../jsonData/gameType.json";
@@ -11,27 +11,29 @@ import { findItems } from "./util";
 import ChannelTag from "./ChannelTag";
 import RankInfo from "./RankInfo";
 import TimeInfo from "./TimeInfo";
+import MatchMember from "./MatchMember";
 
 const Card = styled.div`
   width: 1000px;
   border-radius: 7px;
-  margin-bottom: 40px;
+  margin-bottom: -5px;
   background-color: white;
   float: left;
   color: black;
   padding: 25px;
-  box-shadow: 0px 0px 7px 7px rgba(0, 0, 0, 0.15);
+  box-shadow: 10px -10px 7px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
 
   @media (max-width: 1120px) {
     width: 95%;
     padding: 22px;
-    margin-bottom: 28px;
+    margin-bottom: -3px;
   }
 
   @media (max-width: 700px) {
     width: 86%;
     padding: 25px;
-    margin-bottom: 28px;
+    margin-bottom: -2px;
   }
 `;
 
@@ -164,10 +166,11 @@ const StyledSpinner = styled.svg`
 interface Props {
   posts: MatchDetail[];
   loading: boolean;
+  nickname: string;
 }
 
 const Match: FunctionComponent<Props> = (props) => {
-  const { posts, loading } = props;
+  const { posts, loading, nickname } = props;
 
   if (loading) {
     return (
@@ -246,6 +249,11 @@ const Match: FunctionComponent<Props> = (props) => {
                 matchWin={post.player.matchWin}
               ></RankInfo>
             </Card>
+            <MatchMember
+              matchType={post.matchType}
+              matchId={post.matchId}
+              nickname={nickname}
+            ></MatchMember>
           </Slide>
         </div>
       ))}
