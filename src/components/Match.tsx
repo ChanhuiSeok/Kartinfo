@@ -70,6 +70,9 @@ const TrackImg = styled.img`
   margin-left:5px;
   width:22%;
   onerror='this.src="/unknownTrack.png"';
+  @media (max-width: 700px) {
+    margin-left: 3px;
+  }
 `;
 
 const KartImg = styled.img`
@@ -91,7 +94,7 @@ const MatchList = styled.div`
   margin-left: 15px;
   vertical-align: top;
   @media (max-width: 700px) {
-    margin-left: 12px;
+    margin-left: 9px;
   }
 `;
 
@@ -107,7 +110,7 @@ const TypeTitle = styled.div`
   }
   @media (max-width: 700px) {
     margin: 0 0 2px;
-    font-size: 15px;
+    font-size: 14px;
   }
 `;
 
@@ -122,7 +125,7 @@ const SubTitle = styled.div`
     font-size: 15px;
   }
   @media (max-width: 700px) {
-    font-size: 13px;
+    font-size: 12px;
   }
 `;
 

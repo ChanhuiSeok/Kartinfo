@@ -25,7 +25,7 @@ const TimeTitle = styled.div`
     margin-top: 1.5em;
   }
   @media (max-width: 500px) {
-    font-size: 12px;
+    font-size: 11px;
     margin-top: 0.8em;
   }
 `;
