@@ -158,7 +158,7 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
       }
     }
     if (type === "character") return "image/unknownChar.png";
-    return "image/unknownkart.png";
+    return "image/unknownKart.png";
   }
 
   function validRank(rank: string) {
@@ -182,7 +182,7 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
           <Card>
             {data.matchIndiMember.map((item) => (
               <MemberCard key={item.accountNo} style={isMine(item.characterName, "Indi")}>
-                <div style={{ display: "flex", flexDirection: "column" }}>
+                <div style={{ display: "flex", flexDirection: "column", marginTop: "3px" }}>
                   <div style={{ flexDirection: "row" }}>
                     <CharacterImg
                       src={validSrc(character, "character", item.character)}
@@ -214,7 +214,7 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
                 key={item.accountNo}
                 style={{ backgroundColor: "#FEDEE9", ...isMine(item.characterName, "Team1") }}
               >
-                <div style={{ display: "flex", flexDirection: "column" }}>
+                <div style={{ display: "flex", flexDirection: "column", marginTop: "3px" }}>
                   <div style={{ flexDirection: "row" }}>
                     <CharacterImg
                       src={validSrc(character, "character", item.character)}
@@ -231,7 +231,7 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
                 key={item.accountNo}
                 style={{ backgroundColor: "#C5DFF9", ...isMine(item.characterName, "Team2") }}
               >
-                <div style={{ display: "flex", flexDirection: "column" }}>
+                <div style={{ display: "flex", flexDirection: "column", marginTop: "3px" }}>
                   <div style={{ flexDirection: "row" }}>
                     <CharacterImg
                       src={validSrc(character, "character", item.character)}
