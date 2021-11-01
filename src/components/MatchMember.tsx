@@ -29,12 +29,17 @@ const Card = styled.div`
   @media (max-width: 1120px) {
     width: 95%;
     padding: 22px;
+    flex-wrap: nowrap;
     margin-bottom: 28px;
   }
   @media (max-width: 700px) {
     width: 86%;
-    padding: 0 25px 10px 25px;
     margin-bottom: 28px;
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+    padding: 0 25px 15px 25px;
+    justify-content: left;
+    overflow-y: hidden;
   }
 `;
 
@@ -71,49 +76,68 @@ const StyledSpinner = styled.svg`
 const MemberCard = styled.div`
   display: flex;
   margin-right: 5px;
-  padding: 5px;
+  padding: 5px 0 0;
   border-radius: 5px;
   background-color: #efefef;
-  max-width: 140px;
+  max-width: 100px;
   @media (max-width: 1120px) {
-    max-width: 110px;
+    max-width: 90px;
+    flex: 0 0 auto;
   }
   @media (max-width: 700px) {
-    max-width: 70px;
+    max-width: 80px;
+    flex: 0 0 auto;
   }
 `;
 
 const CharacterImg = styled.img`
   position: relative;
-  width: 80%;
+  width: 70%;
   z-index: 1;
-  margin-left: 10px;
+  margin-left: -3px;
   @media (max-width: 1120px) {
-    margin-left: 7px;
+    margin-left: -3px;
   }
   @media (max-width: 700px) {
-    margin-left: 3px;
+    margin-left: -2px;
+  }
+`;
+
+const KartImg = styled.img`
+  position: relative;
+  width: 55%;
+  z-index: 0;
+  margin-left: -30px;
+  @media (max-width: 1120px) {
+    margin-left: -29px;
+  }
+  @media (max-width: 700px) {
+    margin-left: -28px;
   }
 `;
 
 const Nickname = styled.p`
-  font-size: 15px;
+  font-size: 13px;
   text-align: center;
-  font-weight: 700;
-  letter-spacing: -1px;
+  font-weight: 400;
+  padding: 5px;
+  letter-spacing: -1.5px;
   @media (max-width: 700px) {
     word-break: break-word;
-    font-size: 9px;
+    font-size: 11px;
   }
 `;
 
 const RankInfo = styled.p`
-  font-size: 20px;
+  font-size: 14px;
   text-align: center;
-  padding: 3px;
-  font-weight: 800;
+  padding: 6px;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 0 0 5px 5px;
   @media (max-width: 700px) {
-    font-size: 12px;
+    font-size: 11px;
   }
 `;
 
@@ -138,15 +162,15 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
   }
 
   function validRank(rank: string) {
-    if (rank === "" || rank === "99") return "RT";
-    return `#${rank}`;
+    if (rank === "" || rank === "99") return "리타이어";
+    return `${rank}등`;
   }
 
   function isMine(characterName, matchType) {
     if (characterName === nickname) {
-      if (matchType === "Indi") return { border: "2px solid gray" };
-      if (matchType === "Team1") return { border: "2px solid #E55281" };
-      if (matchType === "Team2") return { border: "2px solid #287ECF" };
+      if (matchType === "Indi") return { boxShadow: "0 0 0 2px gray inset" };
+      if (matchType === "Team1") return { boxShadow: "0 0 0 2px #E55281 inset" };
+      if (matchType === "Team2") return { boxShadow: "0 0 0 2px #287ECF inset" };
     }
     return {};
   }
@@ -163,6 +187,7 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
                     <CharacterImg
                       src={validSrc(character, "character", item.character)}
                     ></CharacterImg>
+                    <KartImg src={validSrc(kart, "kart", item.kart)}></KartImg>
                   </div>
                   <Nickname>{item.characterName}</Nickname>
                   <RankInfo>{validRank(item.matchRank)}</RankInfo>
@@ -194,6 +219,7 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
                     <CharacterImg
                       src={validSrc(character, "character", item.character)}
                     ></CharacterImg>
+                    <KartImg src={validSrc(kart, "kart", item.kart)}></KartImg>
                   </div>
                   <Nickname>{item.characterName}</Nickname>
                   <RankInfo>{validRank(item.matchRank)}</RankInfo>
@@ -210,6 +236,7 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
                     <CharacterImg
                       src={validSrc(character, "character", item.character)}
                     ></CharacterImg>
+                    <KartImg src={validSrc(kart, "kart", item.kart)}></KartImg>
                   </div>
                   <Nickname>{item.characterName}</Nickname>
                   <RankInfo>{validRank(item.matchRank)}</RankInfo>
