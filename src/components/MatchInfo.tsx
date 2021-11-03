@@ -44,6 +44,8 @@ const MatchInfo: FunctionComponent<Props> = ({ id, nickname }) => {
     itemArr,
   } = usePagination(data, postsPerPage);
 
+  console.log(posts);
+
   const personInfo = useRef(null);
 
   // 유저 카드 저장
@@ -72,7 +74,7 @@ const MatchInfo: FunctionComponent<Props> = ({ id, nickname }) => {
         </div>
       )}
       <styled.Container>
-        {posts && (
+        {posts && posts.matches.length !== 0 && (
           <>
             <Zoom left>
               <styled.DownloadDiv>
@@ -158,6 +160,7 @@ const MatchInfo: FunctionComponent<Props> = ({ id, nickname }) => {
             )}
           </>
         )}
+        {posts?.matches.length === 0 && <h1>기록이 존재하지 않습니다.</h1>}
         {error && <h1>기록을 불러올 수 없습니다.</h1>}
       </styled.Container>
     </>
