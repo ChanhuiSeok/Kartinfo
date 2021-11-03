@@ -44,8 +44,6 @@ const MatchInfo: FunctionComponent<Props> = ({ id, nickname }) => {
     itemArr,
   } = usePagination(data, postsPerPage);
 
-  console.log(posts);
-
   const personInfo = useRef(null);
 
   // 유저 카드 저장
