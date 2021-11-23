@@ -3,6 +3,7 @@ import gameType from "../jsonData/gameType.json";
 import character from "../jsonData/character.json";
 import kart from "../jsonData/kart.json";
 import styled from "styled-components";
+import StyledSpinner from "./StyledSpinner";
 import { getTeamOrIndi } from "./util";
 import { useMatchMember } from "../hooks";
 import { MatchIndiMember, MatchTeamMeber } from "../model";
@@ -40,36 +41,6 @@ const Card = styled.div`
     padding: 0 25px 15px 25px;
     justify-content: left;
     overflow-y: hidden;
-  }
-`;
-
-const StyledSpinner = styled.svg`
-  animation: rotate 2s linear infinite;
-  width: 30px;
-  height: 30px;
-  & .path {
-    stroke: #787878;
-    stroke-linecap: round;
-    animation: dash 1.5s ease-in-out infinite;
-  }
-  @keyframes rotate {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes dash {
-    0% {
-      stroke-dasharray: 1, 150;
-      stroke-dashoffset: 0;
-    }
-    50% {
-      stroke-dasharray: 90, 150;
-      stroke-dashoffset: -35;
-    }
-    100% {
-      stroke-dasharray: 90, 150;
-      stroke-dashoffset: -124;
-    }
   }
 `;
 
@@ -182,11 +153,15 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
           <Card>
             {data.matchIndiMember.map((item) => (
               <MemberCard key={item.accountNo} style={isMine(item.characterName, "Indi")}>
-                <div style={{ display: "flex", flexDirection: "column", marginTop: "3px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginTop: "3px",
+                  }}
+                >
                   <div style={{ flexDirection: "row" }}>
-                    <CharacterImg
-                      src={validSrc(character, "character", item.character)}
-                    ></CharacterImg>
+                    <CharacterImg src={validSrc(character, "character", item.character)}></CharacterImg>
                     <KartImg src={validSrc(kart, "kart", item.kart)}></KartImg>
                   </div>
                   <Nickname>{item.characterName}</Nickname>
@@ -196,9 +171,7 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
             ))}
           </Card>
         )}
-        {!loading && data.matchIndiMember === null && (
-          <Card style={{ color: "gray", fontSize: "12px" }}>{`상세 데이터가 없습니다`}</Card>
-        )}
+        {!loading && data.matchIndiMember === null && <Card style={{ color: "gray", fontSize: "12px" }}>{`상세 데이터가 없습니다`}</Card>}
         {error && <h1>데이터를 불러올 수 없습니다.</h1>}
       </>
     );
@@ -212,13 +185,20 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
             {data.matchTeamMember[0].players.map((item) => (
               <MemberCard
                 key={item.accountNo}
-                style={{ backgroundColor: "#FEDEE9", ...isMine(item.characterName, "Team1") }}
+                style={{
+                  backgroundColor: "#FEDEE9",
+                  ...isMine(item.characterName, "Team1"),
+                }}
               >
-                <div style={{ display: "flex", flexDirection: "column", marginTop: "3px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginTop: "3px",
+                  }}
+                >
                   <div style={{ flexDirection: "row" }}>
-                    <CharacterImg
-                      src={validSrc(character, "character", item.character)}
-                    ></CharacterImg>
+                    <CharacterImg src={validSrc(character, "character", item.character)}></CharacterImg>
                     <KartImg src={validSrc(kart, "kart", item.kart)}></KartImg>
                   </div>
                   <Nickname>{item.characterName}</Nickname>
@@ -229,13 +209,20 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
             {data.matchTeamMember[1].players.map((item) => (
               <MemberCard
                 key={item.accountNo}
-                style={{ backgroundColor: "#C5DFF9", ...isMine(item.characterName, "Team2") }}
+                style={{
+                  backgroundColor: "#C5DFF9",
+                  ...isMine(item.characterName, "Team2"),
+                }}
               >
-                <div style={{ display: "flex", flexDirection: "column", marginTop: "3px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginTop: "3px",
+                  }}
+                >
                   <div style={{ flexDirection: "row" }}>
-                    <CharacterImg
-                      src={validSrc(character, "character", item.character)}
-                    ></CharacterImg>
+                    <CharacterImg src={validSrc(character, "character", item.character)}></CharacterImg>
                     <KartImg src={validSrc(kart, "kart", item.kart)}></KartImg>
                   </div>
                   <Nickname>{item.characterName}</Nickname>
@@ -245,9 +232,7 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
             ))}
           </Card>
         )}
-        {!loading && data.matchTeamMember === null && (
-          <Card style={{ color: "gray", fontSize: "12px" }}>{`상세 데이터가 없습니다`}</Card>
-        )}
+        {!loading && data.matchTeamMember === null && <Card style={{ color: "gray", fontSize: "12px" }}>{`상세 데이터가 없습니다`}</Card>}
         {error && <h1>데이터를 불러올 수 없습니다.</h1>}
       </>
     );
@@ -257,9 +242,7 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
     <>
       {loading && (
         <Card style={{ justifyContent: "center" }}>
-          <StyledSpinner viewBox="0 0 50 50">
-            <circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="4" />{" "}
-          </StyledSpinner>
+          <StyledSpinner />
         </Card>
       )}
     </>

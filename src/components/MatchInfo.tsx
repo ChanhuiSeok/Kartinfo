@@ -4,13 +4,8 @@ import { useQuery } from "@apollo/react-hooks";
 import domtoimage from "dom-to-image";
 import Zoom from "react-reveal/Zoom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTrophy,
-  faMedal,
-  faTachometerAlt,
-  faGift,
-  faDownload,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTrophy, faMedal, faTachometerAlt, faGift, faDownload } from "@fortawesome/free-solid-svg-icons";
+import StyledSpinner from "./StyledSpinner";
 import Match from "../components/Match";
 import Pagination from "../components/Pagination";
 import ToggleButton from "../components/ToggleButton";
@@ -32,17 +27,7 @@ const MatchInfo: FunctionComponent<Props> = ({ id, nickname }) => {
   });
 
   const postsPerPage = 10;
-  const {
-    posts,
-    loads,
-    checked,
-    handleClick,
-    topRanks,
-    getCurrentPosts,
-    changePage,
-    speedArr,
-    itemArr,
-  } = usePagination(data, postsPerPage);
+  const { posts, loads, checked, handleClick, topRanks, getCurrentPosts, changePage, speedArr, itemArr } = usePagination(data, postsPerPage);
 
   const personInfo = useRef(null);
 
@@ -65,9 +50,7 @@ const MatchInfo: FunctionComponent<Props> = ({ id, nickname }) => {
             alignItems: "center",
           }}
         >
-          <styled.StyledSpinner viewBox="0 0 50 50">
-            <circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="4" />{" "}
-          </styled.StyledSpinner>
+          <StyledSpinner />
           <p>캐릭터 정보를 불러오는 중...</p>
         </div>
       )}
@@ -138,21 +121,13 @@ const MatchInfo: FunctionComponent<Props> = ({ id, nickname }) => {
             <ToggleButton onChange={handleClick} checked={checked}></ToggleButton>
             {checked === 0 && (
               <>
-                <Pagination
-                  postsPerPage={postsPerPage}
-                  totalPosts={speedArr.length}
-                  paginate={changePage}
-                />
+                <Pagination postsPerPage={postsPerPage} totalPosts={speedArr.length} paginate={changePage} />
                 <Match posts={getCurrentPosts(speedArr)} loading={loads} nickname={nickname} />
               </>
             )}
             {checked === 1 && (
               <>
-                <Pagination
-                  postsPerPage={postsPerPage}
-                  totalPosts={itemArr.length}
-                  paginate={changePage}
-                />
+                <Pagination postsPerPage={postsPerPage} totalPosts={itemArr.length} paginate={changePage} />
                 <Match posts={getCurrentPosts(itemArr)} loading={loads} nickname={nickname} />
               </>
             )}

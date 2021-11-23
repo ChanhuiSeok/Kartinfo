@@ -172,8 +172,6 @@ interface Props {
 const Match: FunctionComponent<Props> = (props) => {
   const { posts, loading, nickname } = props;
 
-  console.log(posts);
-
   if (loading) {
     return (
       <div
