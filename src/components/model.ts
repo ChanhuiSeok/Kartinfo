@@ -1,4 +1,4 @@
-import { ChannelType } from "../model";
+import { ChannelType } from "@/model";
 
 interface Player {
   kart: string;
@@ -45,7 +45,7 @@ interface Teams {
   players: DetailedPlayer[];
 }
 
-export interface MatchTeamMeber {
+export interface MatchTeamMember {
   matchTeamMember: Teams[];
 }
 

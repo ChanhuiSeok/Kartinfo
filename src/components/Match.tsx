@@ -1,17 +1,17 @@
-import React, { useState, FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 import Slide from "react-reveal/Slide";
-import gameType from "../jsonData/gameType.json";
-import track from "../jsonData/track.json";
-import kart from "../jsonData/kart.json";
-import character from "../jsonData/character.json";
+import gameType from "@/jsonData/gameType.json";
+import track from "@/jsonData/track.json";
+import kart from "@/jsonData/kart.json";
+import character from "@/jsonData/character.json";
 import dayjs from "dayjs";
-import { MatchDetail } from "../model";
+import { MatchDetail } from "@/model";
+import ChannelTag from "@/components/ChannelTag";
+import RankInfo from "@/components/RankInfo";
+import TimeInfo from "@/components/TimeInfo";
+import MatchMember from "@/components/MatchMember";
 import { findItems } from "./util";
-import ChannelTag from "./ChannelTag";
-import RankInfo from "./RankInfo";
-import TimeInfo from "./TimeInfo";
-import MatchMember from "./MatchMember";
 
 const Card = styled.div`
   width: 1000px;
@@ -206,13 +206,9 @@ const Match: FunctionComponent<Props> = (props) => {
           <Slide left>
             <CardTitle>
               {`${dayjs(post.startTime).format("YYYY-MM-DD")} / `}
-              <span style={{ color: "#FCD968" }}>
-                {`${findItems(character, post.character, "알 수 없는 캐릭터")} `}
-              </span>
+              <span style={{ color: "#FCD968" }}>{`${findItems(character, post.character, "알 수 없는 캐릭터")} `}</span>
               {`착용 / `}
-              <span style={{ color: "#61E9B4" }}>
-                {`${findItems(kart, post.player.kart, "알 수 없는 카트")} `}
-              </span>
+              <span style={{ color: "#61E9B4" }}>{`${findItems(kart, post.player.kart, "알 수 없는 카트")} `}</span>
               탑승
             </CardTitle>
             <Card>
@@ -242,18 +238,9 @@ const Match: FunctionComponent<Props> = (props) => {
                 <SubTitle>{findItems(track, post.trackId, "알 수 없는 트랙")}</SubTitle>
                 <TimeInfo matchTime={post.player.matchTime} />
               </MatchList>
-              <RankInfo
-                matchRank={post.player.matchRank}
-                playerCount={post.playerCount}
-                matchType={post.matchType}
-                matchWin={post.player.matchWin}
-              ></RankInfo>
+              <RankInfo matchRank={post.player.matchRank} playerCount={post.playerCount} matchType={post.matchType} matchWin={post.player.matchWin}></RankInfo>
             </Card>
-            <MatchMember
-              matchType={post.matchType}
-              matchId={post.matchId}
-              nickname={nickname}
-            ></MatchMember>
+            <MatchMember matchType={post.matchType} matchId={post.matchId} nickname={nickname}></MatchMember>
           </Slide>
         </div>
       ))}

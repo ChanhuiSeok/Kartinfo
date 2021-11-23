@@ -1,2 +1,2 @@
-export * from "../components/model";
-export * from "../metadata/channelType";
+export * from "@/components/model";
+export * from "@/metadata/channelType";

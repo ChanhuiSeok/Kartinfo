@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components";
-import gameType from "../jsonData/gameType.json";
+import gameType from "@/jsonData/gameType.json";
+import { RETIRE, TEAM_WIN, TEAM_LOSE } from "@/const/game";
 import { getTeamOrIndi } from "./util";
-import { RETIRE, TEAM_WIN, TEAM_LOSE } from "../const/game";
 
 interface Props {
   matchRank: string;
@@ -84,8 +84,7 @@ const RankInfo: FunctionComponent<Props> = ({ matchRank, playerCount, matchType,
       {matchRank !== "99" && matchRank !== "" && (
         <Rank>
           <div style={{ flexDirection: "row" }}>
-            <span style={styles}>{matchRank}</span> /
-            <span style={{ fontSize: "18px" }}>{playerCount}</span>
+            <span style={styles}>{matchRank}</span> /<span style={{ fontSize: "18px" }}>{playerCount}</span>
           </div>
           {isTeam && <WinLoseInfo style={winOrLoseStyle}>{`(${teamWinOrLose})`}</WinLoseInfo>}
         </Rank>

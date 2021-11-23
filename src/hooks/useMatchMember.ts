@@ -1,11 +1,11 @@
 import { useQuery } from "@apollo/react-hooks";
-import { GET_MATCH_INDI_MEMBER, GET_MATCH_TEAM_MEMBER } from "../const/graphql";
-import { MatchTeamMeber, MatchIndiMember } from "../model";
+import { GET_MATCH_INDI_MEMBER, GET_MATCH_TEAM_MEMBER } from "@/const/graphql";
+import { MatchTeamMember, MatchIndiMember } from "@/model";
 
 export function useMatchMember(isTeam: boolean, matchId: string) {
   // 팀전
   if (isTeam) {
-    const { loading, data, error } = useQuery<MatchTeamMeber>(GET_MATCH_TEAM_MEMBER, {
+    const { loading, data, error } = useQuery<MatchTeamMember>(GET_MATCH_TEAM_MEMBER, {
       variables: { matchId: matchId },
     });
 

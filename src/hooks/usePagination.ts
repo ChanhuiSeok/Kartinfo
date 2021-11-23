@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { MatchDetail, Matches } from "../model";
-import { speed, item } from "../metadata/trackType";
+import { MatchDetail, Matches } from "@/model";
+import { speed, item } from "@/metadata/trackType";
 
 export function usePagination(data: Matches | undefined, postsPerPage: number) {
   const [posts, setPosts] = useState<Matches>();

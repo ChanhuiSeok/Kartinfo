@@ -6,13 +6,13 @@ import Zoom from "react-reveal/Zoom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrophy, faMedal, faTachometerAlt, faGift, faDownload } from "@fortawesome/free-solid-svg-icons";
 import StyledSpinner from "./StyledSpinner";
-import Match from "../components/Match";
-import Pagination from "../components/Pagination";
-import ToggleButton from "../components/ToggleButton";
-import { Matches } from "./model";
-import { usePagination } from "../hooks";
-import * as styled from "../styles/styled";
-import { GET_MATCHES } from "../const/graphql";
+import Match from "@/components/Match";
+import Pagination from "@/components/Pagination";
+import ToggleButton from "@/components/ToggleButton";
+import { Matches } from "@/model";
+import { usePagination } from "@/hooks";
+import * as styled from "@/styles/styled";
+import { GET_MATCHES } from "@/const/graphql";
 import { saveAs } from "file-saver";
 
 /* 받아온 usrId 값을 가지고 matches 뮤테이션을 실행하여 결과를 그리는 컴포넌트 */

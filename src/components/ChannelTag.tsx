@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components";
-import { ChannelType } from "../metadata/channelType";
+import { ChannelType } from "@/metadata/channelType";
 import { getChannelName } from "./util";
 
 const Channel = styled.span`

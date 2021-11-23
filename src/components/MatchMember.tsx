@@ -1,18 +1,17 @@
 import React, { FunctionComponent } from "react";
-import gameType from "../jsonData/gameType.json";
-import character from "../jsonData/character.json";
-import kart from "../jsonData/kart.json";
-import styled from "styled-components";
-import StyledSpinner from "./StyledSpinner";
+import gameType from "@/jsonData/gameType.json";
+import { useMatchMember } from "@/hooks";
+import { MatchIndiMember, MatchTeamMember } from "@/model";
 import { getTeamOrIndi } from "./util";
-import { useMatchMember } from "../hooks";
-import { MatchIndiMember, MatchTeamMeber } from "../model";
+import MatchIndiMemberInfo from "./MatchIndiMemberInfo";
+import MatchTeamMemberInfo from "./MatchTeamMemberInfo";
+import styled from "styled-components";
 
-function isTeamMember(data: MatchIndiMember | MatchTeamMeber | undefined): data is MatchTeamMeber {
+function isTeamMember(data: MatchIndiMember | MatchTeamMember | undefined): data is MatchTeamMember {
   return data !== undefined && "matchTeamMember" in data;
 }
 
-function isIndiMember(data: MatchIndiMember | MatchTeamMeber | undefined): data is MatchIndiMember {
+function isIndiMember(data: MatchIndiMember | MatchTeamMember | undefined): data is MatchIndiMember {
   return data !== undefined && "matchIndiMember" in data;
 }
 
@@ -112,6 +111,37 @@ const RankInfo = styled.p`
   }
 `;
 
+const StyledSpinner = styled.svg`
+  animation: rotate 2s linear infinite;
+  margin: -25px 0 0 -25px;
+  width: 50px;
+  height: 50px;
+  & .path {
+    stroke: lightgray;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+`;
+
 interface Props {
   matchType: string;
   matchId: string;
@@ -122,127 +152,21 @@ const MatchMember: FunctionComponent<Props> = ({ matchType, matchId, nickname })
   const isTeam = getTeamOrIndi(gameType, matchType) === "Team";
   const { loading, data, error } = useMatchMember(isTeam, matchId);
 
-  function validSrc(items, type: string, target) {
-    for (let i in items) {
-      if (items[i].id === target) {
-        return `image/${type}/${target}.png`;
-      }
-    }
-    if (type === "character") return "image/unknownChar.png";
-    return "image/unknownKart.png";
-  }
-
-  function validRank(rank: string) {
-    if (rank === "" || rank === "99") return "리타이어";
-    return `${rank}등`;
-  }
-
-  function isMine(characterName, matchType) {
-    if (characterName === nickname) {
-      if (matchType === "Indi") return { boxShadow: "0 0 0 2px gray inset" };
-      if (matchType === "Team1") return { boxShadow: "0 0 0 2px #E55281 inset" };
-      if (matchType === "Team2") return { boxShadow: "0 0 0 2px #287ECF inset" };
-    }
-    return {};
-  }
-
   if (isIndiMember(data)) {
-    return (
-      <>
-        {!loading && data.matchIndiMember && (
-          <Card>
-            {data.matchIndiMember.map((item) => (
-              <MemberCard key={item.accountNo} style={isMine(item.characterName, "Indi")}>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    marginTop: "3px",
-                  }}
-                >
-                  <div style={{ flexDirection: "row" }}>
-                    <CharacterImg src={validSrc(character, "character", item.character)}></CharacterImg>
-                    <KartImg src={validSrc(kart, "kart", item.kart)}></KartImg>
-                  </div>
-                  <Nickname>{item.characterName}</Nickname>
-                  <RankInfo>{validRank(item.matchRank)}</RankInfo>
-                </div>
-              </MemberCard>
-            ))}
-          </Card>
-        )}
-        {!loading && data.matchIndiMember === null && <Card style={{ color: "gray", fontSize: "12px" }}>{`상세 데이터가 없습니다`}</Card>}
-        {error && <h1>데이터를 불러올 수 없습니다.</h1>}
-      </>
-    );
+    return <MatchIndiMemberInfo data={data} nickname={nickname} loading={loading} error={error} />;
   }
 
   if (isTeamMember(data)) {
-    return (
-      <>
-        {!loading && data.matchTeamMember && (
-          <Card>
-            {data.matchTeamMember[0].players.map((item) => (
-              <MemberCard
-                key={item.accountNo}
-                style={{
-                  backgroundColor: "#FEDEE9",
-                  ...isMine(item.characterName, "Team1"),
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    marginTop: "3px",
-                  }}
-                >
-                  <div style={{ flexDirection: "row" }}>
-                    <CharacterImg src={validSrc(character, "character", item.character)}></CharacterImg>
-                    <KartImg src={validSrc(kart, "kart", item.kart)}></KartImg>
-                  </div>
-                  <Nickname>{item.characterName}</Nickname>
-                  <RankInfo>{validRank(item.matchRank)}</RankInfo>
-                </div>
-              </MemberCard>
-            ))}
-            {data.matchTeamMember[1].players.map((item) => (
-              <MemberCard
-                key={item.accountNo}
-                style={{
-                  backgroundColor: "#C5DFF9",
-                  ...isMine(item.characterName, "Team2"),
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    marginTop: "3px",
-                  }}
-                >
-                  <div style={{ flexDirection: "row" }}>
-                    <CharacterImg src={validSrc(character, "character", item.character)}></CharacterImg>
-                    <KartImg src={validSrc(kart, "kart", item.kart)}></KartImg>
-                  </div>
-                  <Nickname>{item.characterName}</Nickname>
-                  <RankInfo>{validRank(item.matchRank)}</RankInfo>
-                </div>
-              </MemberCard>
-            ))}
-          </Card>
-        )}
-        {!loading && data.matchTeamMember === null && <Card style={{ color: "gray", fontSize: "12px" }}>{`상세 데이터가 없습니다`}</Card>}
-        {error && <h1>데이터를 불러올 수 없습니다.</h1>}
-      </>
-    );
+    return <MatchTeamMemberInfo data={data} nickname={nickname} loading={loading} error={error} />;
   }
 
   return (
     <>
       {loading && (
         <Card style={{ justifyContent: "center" }}>
-          <StyledSpinner />
+          <StyledSpinner viewBox="0 0 50 50">
+            <circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="4" />{" "}
+          </StyledSpinner>
         </Card>
       )}
     </>

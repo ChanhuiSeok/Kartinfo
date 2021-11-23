@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
-import MatchInfo from "../components/MatchInfo";
 import styled, { keyframes } from "styled-components";
-import StyledSpinner from "../components/StyledSpinner";
 import Bounce from "react-reveal/Bounce";
 import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
@@ -12,6 +10,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faLaptopCode, faNetworkWired, faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
 import { Play, useHowl } from "rehowl";
+import MatchInfo from "@/components/MatchInfo";
+import StyledSpinner from "@/components/StyledSpinner";
 
 /* Home.js에서 건너온 state 값을 토대로 usrID로 변환해 주고, 정보를 그리는 메인 페이지 */
 

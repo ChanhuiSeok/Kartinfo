@@ -19,6 +19,9 @@ module.exports = {
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
   },
   mode: "none",
   module: {
@@ -29,11 +32,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: [
-              "@babel/preset-env",
-              "@babel/react",
-              "@babel/preset-typescript",
-            ],
+            presets: ["@babel/preset-env", "@babel/react", "@babel/preset-typescript"],
             plugins: ["@babel/plugin-proposal-class-properties"],
           },
         },

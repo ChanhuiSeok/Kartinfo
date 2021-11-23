@@ -8,7 +8,7 @@ import {
   BattleChannel,
   TierChannel,
   ChannelType,
-} from "../metadata/channelType";
+} from "@/metadata/channelType";
 
 function contains<T extends string>(list: ReadonlyArray<T>, value: string): value is T {
   return list.some((item) => item === value);
@@ -119,4 +119,28 @@ export function getPageNums(totalPosts: number, postsPerPage: number) {
     pageNumbers.push(i);
   }
   return pageNumbers;
+}
+
+export function validSrc(items, type: string, target) {
+  for (let i in items) {
+    if (items[i].id === target) {
+      return `image/${type}/${target}.png`;
+    }
+  }
+  if (type === "character") return "image/unknownChar.png";
+  return "image/unknownKart.png";
+}
+
+export function validRank(rank: string) {
+  if (rank === "" || rank === "99") return "리타이어";
+  return `${rank}등`;
+}
+
+export function isMine(characterName, matchType, nickname) {
+  if (characterName === nickname) {
+    if (matchType === "Indi") return { boxShadow: "0 0 0 2px gray inset" };
+    if (matchType === "Team1") return { boxShadow: "0 0 0 2px #E55281 inset" };
+    if (matchType === "Team2") return { boxShadow: "0 0 0 2px #287ECF inset" };
+  }
+  return {};
 }
