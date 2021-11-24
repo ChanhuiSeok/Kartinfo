@@ -8,13 +8,18 @@ import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faLaptopCode, faNetworkWired, faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEnvelope,
+  faLaptopCode,
+  faNetworkWired,
+  faVolumeUp,
+  faVolumeMute,
+} from "@fortawesome/free-solid-svg-icons";
 import { Play, useHowl } from "rehowl";
 import MatchInfo from "@/components/MatchInfo";
 import StyledSpinner from "@/components/StyledSpinner";
 
 /* Home.js에서 건너온 state 값을 토대로 usrID로 변환해 주고, 정보를 그리는 메인 페이지 */
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,8 +29,22 @@ const Container = styled.div`
 const Header = styled.header`
   min-height: 600px;
   background-color: #2f9fe7;
-  background-image: linear-gradient(45deg, #0896e7 25%, transparent 25%, transparent 75%, #0896e7 75%, #0896e7),
-    linear-gradient(45deg, #0896e7 25%, transparent 25%, transparent 75%, #0896e7 75%, #0896e7);
+  background-image: linear-gradient(
+      45deg,
+      #0896e7 25%,
+      transparent 25%,
+      transparent 75%,
+      #0896e7 75%,
+      #0896e7
+    ),
+    linear-gradient(
+      45deg,
+      #0896e7 25%,
+      transparent 25%,
+      transparent 75%,
+      #0896e7 75%,
+      #0896e7
+    );
   background-position: 0 0, 25px 25px;
   background-size: 50px 50px;
   color: white;
@@ -159,15 +178,23 @@ export default function Detail() {
               <StyledSpinner /> <p>로딩중...</p>
             </>
           )}
-          {data && <MatchInfo id={data.user?.accessId} nickname={usrName}></MatchInfo>}
+          {data && (
+            <MatchInfo id={data.user?.accessId} nickname={usrName}></MatchInfo>
+          )}
           {error && <h1>유저정보가 없습니다.</h1>}
         </Header>
       </Container>
       <Footer>
-        <FontAwesomeIcon icon={faGithub} /> <a href="https://github.com/chanhuiseok/">ChanhuiSeok</a> ·
-        <FontAwesomeIcon icon={faEnvelope} /> <a href="mailto:chanhuicom@gmail.com"> gmail</a> ·
-        <FontAwesomeIcon icon={faLaptopCode} /> <a href="https://developers.nexon.com/kart/">Kartrider API </a> ·
-        <FontAwesomeIcon icon={faNetworkWired} /> <a href="https://github.com/ChanhuiSeok/kartAPI-Graphql">with GraphQL</a>
+        <FontAwesomeIcon icon={faGithub} />{" "}
+        <a href="https://github.com/chanhuiseok/">ChanhuiSeok</a> ·
+        <FontAwesomeIcon icon={faEnvelope} />{" "}
+        <a href="mailto:chanhuicom@gmail.com"> gmail</a> ·
+        <FontAwesomeIcon icon={faLaptopCode} />{" "}
+        <a href="https://developers.nexon.com/kart/">Kartrider API </a> ·
+        <FontAwesomeIcon icon={faNetworkWired} />{" "}
+        <a href="https://github.com/ChanhuiSeok/kartAPI-Graphql">
+          with GraphQL
+        </a>
       </Footer>
     </>
   );
