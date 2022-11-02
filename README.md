@@ -1,5 +1,7 @@
 # KartInfo
 
+<img src="./public/title.png" >
+
 * 🔑 GraphQL로 래핑한 카트라이더 오픈API를 활용하여 유저 정보 조회 웹페이지 제작
 * 🔗 **웹페이지 링크** : https://kartinfoweb.herokuapp.com/
 
